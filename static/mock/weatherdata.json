@@ -1,0 +1,8 @@
+{
+    "weatherdata": {
+        "weather":2,
+        "temperature": 36,
+        "wind":"2",
+        "humidity": 40
+    }
+}
