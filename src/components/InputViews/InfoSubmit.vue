@@ -305,530 +305,69 @@ export default {
     name:"InfoSubmit",
     data() {
 	    return {
-         weatherForm:"",
-          deviceForm:"",
-	      input: '3',
-		  dialogFormVisible: false,
-		  dialogFormVisible1: false,
-		  dialogFormVisible2: false,
-		  dialogFormVisible3: false,
-		  dialogFormVisible4: false,
-		  dialogFormVisible5: false,
-		  formLabelWidth: '120px',
-		  index1: '',
-		  index2: '',
-		  temloc:
-		  {
-			  name: 'tem',
-			  jing: '',
-			  jingfen: '',
-			  wei: '',
-			  weifen: '',
-			  direc1: '',
-			  direc2: '',
-			  address: '',
-			  radius: ''
-		  },
-		  locdata: [
-		  			  {
-		  				  name: '地点1',
-		  				  jing: '1',
-		  				  jingfen: '2',
-		  				  wei: '6',
-		  				  weifen: '7',
-		  				  direc1: '东经',
-		  				  direc2: '南纬',
-		  				  address: '位置1',
-		  				  radius: '9'
-		  			  },
-		  			  {
-		  				  name: '地点2',
-		  				  jing: '3',
-		  				  jingfen: '4',
-		  				  wei: '',
-		  				  weifen: '',
-		  				  direc1: '',
-		  				  direc2: '',
-		  				  address: '',
-		  				  radius: '120'
-		  			  },
-		  			  {
-		  				  name: '地点3',
-		  				  jing: '',
-		  				  jingfen: '',
-		  				  wei: '',
-		  				  weifen: '',
-		  				  direc1: '',
-		  				  direc2: '',
-		  				  address: '',
-		  				  radius: ''
-		  			  },
-		  			  {
-		  				  name: '地点4',
-		  				  jing: '',
-		  				  jingfen: '',
-		  				  wei: '',
-		  				  weifen: '',
-		  				  direc1: '',
-		  				  direc2: '',
-		  				  address: '',
-		  				  radius: ''
-		  			  },
-		  			  {
-		  				  name: '地点5',
-		  				  jing: '',
-		  				  jingfen: '',
-		  				  wei: '',
-		  				  weifen: '',
-		  				  direc1: '',
-		  				  direc2: '',
-		  				  address: '',
-		  				  radius: ''
-		  			  }
-
-		  ],
-		  taskdata: [
-		  	{
-		  		name: '事件类型',
-		  		result: '火灾'
-		  	},
-		  	{
-		  		name: '事件规模',
-		  		result: ''
-		  	},
-		  	{
-		  		name: '地点类型',
-		  		result: ''
-		  	},
-		  	{
-		  		name: '救援任务',
-		  		result: ''
-		  	},
-		  	{
-		  		name: '数据任务',
-		  		result: ''
-		  	}
-		  ],
-		  deviceForm:{
-		      displayform_index: 0, //0：图片形式  1：列表形式
-		      device_data:"",
-		      graph_form:{
-		          currentindex:"",
-		          pages:[],
-		      },
-		      list_form:{
-		          devices_onshow:[
-					   {
-					                  "name":"iMesh-3800P宽带自组网背负台-001",
-					                  "repository_num":9,
-					                  "active_num":2,
-					                  "picurl":"http://localhost:8080/static/devicepic/personal_device_1.png",
-					                  "class":"单兵自组网电台",
-					                  "devicetype":"Mesh",
-					                  "purpose":"适用于应急场景前端视频采集业务",
-					                  "short_cut":"iMesh宽带自组网背负台产品，配有电池，具有RJ45/HDMI/WiFi/蓝牙等多种接口，支持单兵背负/支架挂配/无人机便携等，适用于应急场景前端视频采集与回传业务。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"3MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"iMesh-3800P宽带自组网背负台-002",
-					                  "repository_num":108,
-					                  "active_num":3,
-					                  "picurl":"http://localhost:8080/static/devicepic/personal_device_2.png",
-					                  "class":"单兵自组网电台",
-					                  "devicetype":"LTE",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"iMesh宽带自组网背负台产品，配有电池，具有RJ45/HDMI/WiFi/蓝牙等多种接口，支持单兵背负/支架挂配/无人机便携等，适用于应急场景前端视频采集与回传业务。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"iMesh-3800P宽带自组网背负台-003",
-					                  "repository_num":10,
-					                  "active_num":5,
-					                  "picurl":"http://localhost:8080/static/devicepic/personal_device_1.png",
-					                  "class":"单兵自组网电台",
-					                  "devicetype":"LTE",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"iMesh宽带自组网背负台产品，配有电池，具有RJ45/HDMI/WiFi/蓝牙等多种接口，支持单兵背负/支架挂配/无人机便携等，适用于应急场景前端视频采集与回传业务。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"iMesh-3800V宽带自组网车载台-001",
-					                  "repository_num":10,
-					                  "active_num":2,
-					                  "picurl":"http://localhost:8080/static/devicepic/vehcile_device_1.png",
-					                  "class":"车载自组网电台",
-					                  "devicetype":"Mesh",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"Mesh宽带自组网车载台产品，支持移动车载，固定放装或便携应急部署，具有光口、网口及WiFi接口，支持市电及选配电池供电，可作为应急场景汇聚点或中继点。另可选配公网全网通4G模块，或外接专网4G模块，与公/专网4G融合组网通信。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"iMesh-3800V宽带自组网车载台-002",
-					                  "repository_num":10,
-					                  "active_num":1,
-					                  "picurl":"http://localhost:8080/static/devicepic/vehcile_device_1.png",
-					                  "class":"车载自组网电台",
-					                  "devicetype":"LTE",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"Mesh宽带自组网车载台产品，支持移动车载，固定放装或便携应急部署，具有光口、网口及WiFi接口，支持市电及选配电池供电，可作为应急场景汇聚点或中继点。另可选配公网全网通4G模块，或外接专网4G模块，与公/专网4G融合组网通信。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"iMesh-3800V宽带自组网车载台-003",
-					                  "repository_num":10,
-					                  "active_num":0,
-					                  "picurl":"http://localhost:8080/static/devicepic/vehcile_device_1.png",
-					                  "class":"车载自组网电台",
-					                  "devicetype":"Mesh",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"Mesh宽带自组网车载台产品，支持移动车载，固定放装或便携应急部署，具有光口、网口及WiFi接口，支持市电及选配电池供电，可作为应急场景汇聚点或中继点。另可选配公网全网通4G模块，或外接专网4G模块，与公/专网4G融合组网通信。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"机载节点-001",
-					                  "repository_num":10,
-					                  "active_num":1,
-					                  "picurl":"http://localhost:8080/static/devicepic/uav_device_1.png",
-					                  "class":"航空无人机电台",
-					                  "devicetype":"Mesh",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"支持星状、链状、网状等多种拓扑结构，组网灵活。功耗低，体积小，重量轻。提供端到端的安全机制，保证网络安全。工业级设计，适应恶劣工作环境。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"机载节点-002",
-					                  "repository_num":10,
-					                  "active_num":0,
-					                  "picurl":"http://localhost:8080/static/devicepic/uav_device_1.png",
-					                  "class":"航空无人机电台",
-					                  "devicetype":"LTE",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"支持星状、链状、网状等多种拓扑结构，组网灵活。功耗低，体积小，重量轻。提供端到端的安全机制，保证网络安全。工业级设计，适应恶劣工作环境。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              },
-					              {
-					                  "name":"机载节点-003",
-					                  "repository_num":10,
-					                  "active_num":0,
-					                  "picurl":"http://localhost:8080/static/devicepic/uav_device_1.png",
-					                  "class":"航空无人机电台",
-					                  "devicetype":"Mesh",
-					                  "purpose":"适用于应急场景前端视频采集与回传业务",
-					                  "short_cut":"支持星状、链状、网状等多种拓扑结构，组网灵活。功耗低，体积小，重量轻。提供端到端的安全机制，保证网络安全。工业级设计，适应恶劣工作环境。",
-					                  "params":[
-					                      {
-					                          "p_title":"频段范围",
-					                          "p_value":"320MHz～344MHz、542MHz～582MHz，可定制"
-					                      },
-					                      {
-					                          "p_title":"发射功率",
-					                          "p_value":"2×2W"
-					                      },
-					                      {
-					                          "p_title":"载波带宽",
-					                          "p_value":"10MHz(典型)，可定制"
-					                      },
-					                      {
-					                          "p_title":"传输距离",
-					                          "p_value":"10km(LOS),2km(NLOS)"
-					                      },
-					                      {
-					                          "p_title":"安装方式",
-					                          "p_value":"背负、支架挂靠"
-					                      },
-					                      {
-					                          "p_title":"工作温度范围",
-					                          "p_value":"-40℃～+65℃"
-					                      },
-					                      {
-					                          "p_title":"湿度",
-					                          "p_value":"5%RH～100%RH"
-					                      },
-					                      {
-					                          "p_title":"防护等级",
-					                          "p_value":"IP67"
-					                      }
-					                  ]
-					              }
-				  ],
-		          last_deviceclass_list:[],
-		          last_devicetype_list:[],
-		          currentpage:1,
-		          pagesize:4,
-		          class_value:"不限",
-		          devicetype_value:"不限",
-		          class_filter:[],
-		          type_filter:[]
-		      }
-		  }
+			weatherForm:"",
+		  	deviceForm:"",
+		  
+			input: "",
+			dialogFormVisible: false,
+			dialogFormVisible1: false,
+			dialogFormVisible2: false,
+			dialogFormVisible3: false,
+			dialogFormVisible4: false,
+			dialogFormVisible5: false,
+			formLabelWidth: '120px',
+			index1: '',
+			index2: '',
+			temloc:
+			{
+				name: 'tem',
+				jing: '',
+				jingfen: '',
+				wei: '',
+				weifen: '',
+				direc1: '',
+				direc2: '',
+				address: '',
+				radius: ''
+			},
+			locdata: "",
+			taskdata:"",
 	    }
 
+	},
+    beforeCreate(){
+		console.log("beforeCreate")
+		console.log(this.deviceForm)
     },
-    beforeMount(){
-      //钩子函数，获取设备信息
-      this.getactivedevices()
-    },
-    mounted(){
-        var that = this
+    created(){
+		console.log("created")
+		console.log(this.deviceForm)
+	},
+	beforeMount(){
+		console.log("beforeMount")
+		console.log(this.deviceForm)
+	},
+	mounted(){
+		var that = this
         bus.$on("sendWeatherinfo",function(weatherForm){
             that.weatherForm = weatherForm
         })
         bus.$on("sendDeviceinfo",function(deviceForm){
-            that.deviceForm = deviceForm
-        })
-    },
+			console.log(123)
+			that.deviceForm = deviceForm
+			that.getactivedevices()
+		})
+		bus.$on("sendMissioninfo",function(taskdata){
+            that.taskdata = taskdata
+		})
+		bus.$on("sendPositioninfo_1",function(locdata){
+            that.locdata = locdata
+		})
+		bus.$on("sendPositioninfo_2",function(input){
+            that.input = input
+		})
+		
+	},
     methods:{
       NextStep(){
         this.$emit("Submitfinished",5)
@@ -881,15 +420,19 @@ export default {
 		  handleCurrentChange_list(val){                    //”列表形式“下翻页
 		      this.deviceForm.list_form.currentpage = val
 		  },
-      getactivedevices(){
-          const _this = this
-          var resultlist = []
-          for(var i=0; i<_this.deviceForm.list_form.devices_onshow.length; i++){
-            if(_this.deviceForm.list_form.devices_onshow[i].active_num>0)
-              resultlist.push(_this.deviceForm.list_form.devices_onshow[i])
-          }
-          _this.deviceForm.list_form.devices_onshow = resultlist
-      }
+		getactivedevices(){
+			const _this = this
+			var resultlist = []
+			for(var i=0; i<_this.deviceForm.device_data.devices.length; i++){
+				if(_this.deviceForm.device_data.devices[i].active_num>0)
+				resultlist.push(_this.deviceForm.device_data.devices[i])
+			}
+			_this.deviceForm.list_form.devices_onshow.splice(0,_this.deviceForm.list_form.devices_onshow.length)
+			console.log(_this.deviceForm.list_form.devices_onshow)
+			for(var i=0; i<resultlist.length ;i++){
+				_this.deviceForm.list_form.devices_onshow.push(resultlist[i])
+			}
+		}
     }
 }
 </script>

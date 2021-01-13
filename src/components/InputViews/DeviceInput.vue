@@ -310,7 +310,7 @@ export default {
                 //重新设置last_devicetype_list
                 this.deviceForm.list_form.last_devicetype_list.splice(0,this.deviceForm.list_form.last_devicetype_list.length)
                 for(var i=0; i<devicetype_list.length ;i++){
-                this.deviceForm.list_form.last_devicetype_list.push(devicetype_list[i])
+                    this.deviceForm.list_form.last_devicetype_list.push(devicetype_list[i])
                 }
             }else{
                 //如果没有对 设备通信类型 提出新的筛选要求，则延续上一次的筛选
@@ -338,7 +338,7 @@ export default {
         NextStep(){
             bus.$emit("sendDeviceinfo",this.deviceForm)
             this.$emit("Devicefinished",4)
-        }
+        },
     }
 }
 </script>

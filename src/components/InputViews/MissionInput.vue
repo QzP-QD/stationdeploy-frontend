@@ -87,6 +87,9 @@
 </template>
  
 <script>
+//引入bus作为数据传输总线
+import bus from "./eventbus";
+
 export default {
     name:"MissionInput",
     data(){
@@ -156,7 +159,8 @@ export default {
         var that = this
         this.$refs[formName].validate((valid) => {
           if (valid) {
-          this.$emit("Missionfinished",2)
+		  this.$emit("Missionfinished",2)
+		  bus.$emit("sendMissioninfo",this.taskdata)
           } else {
             console.log('error submit!!');
             return false;

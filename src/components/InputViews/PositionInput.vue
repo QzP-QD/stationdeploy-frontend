@@ -310,6 +310,9 @@
 </template>
 
 <script>
+//引入bus作为数据传输总线
+import bus from "./eventbus";
+
 export default {
     name:"PositionInput",
     data() {
@@ -379,7 +382,9 @@ export default {
 	},
     methods:{
       NextStep(){
-        this.$emit("Positionfinished",1)
+		this.$emit("Positionfinished",1)
+		bus.$emit("sendPositioninfo_1",this.locdata)
+		bus.$emit("sendPositioninfo_2",this.input)
       }
     }
 }
