@@ -335,18 +335,6 @@ export default {
 	    }
 
 	},
-    beforeCreate(){
-		console.log("beforeCreate")
-		console.log(this.deviceForm)
-    },
-    created(){
-		console.log("created")
-		console.log(this.deviceForm)
-	},
-	beforeMount(){
-		console.log("beforeMount")
-		console.log(this.deviceForm)
-	},
 	mounted(){
 		var that = this
         bus.$on("sendWeatherinfo",function(weatherForm){
