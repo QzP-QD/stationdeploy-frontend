@@ -3,7 +3,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //导入组件
-import Input from "../views/InputInfo2"
+import Input from "../views/InputInfo"
 import Command from "../views/Command"
 import InfoManage from "../views/InfoManage"
 

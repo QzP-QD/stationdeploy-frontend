@@ -51,7 +51,7 @@
                         width="400">
                     </el-table-column>
                     </el-table>
-                    <h5>部署数量：</h5>{{deviceitem.active_num}}
+                    <h5>部署数量：</h5>
                     <el-input-number 
                     v-model="deviceitem.active_num" 
                     :min="0" 
@@ -147,11 +147,16 @@
             </el-pagination>
             <br>
         </el-main>
-        <el-button 
-            style="float:right;" 
-            type="primary" @click="NextStep()">
-              下一步
-        </el-button>
+        <el-footer style="background-color:#FFFFFF;">
+            <el-button 
+                style="
+                    height:50px;
+                    width:140px;
+                    float:right;" 
+                type="primary" @click="NextStep()">
+                下一步
+            </el-button>
+        </el-footer>
     </el-container>  
 </template>
 
