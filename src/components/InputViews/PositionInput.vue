@@ -21,18 +21,22 @@
           <div id="selectNum">
 
             <li v-for="(item, index) in local_list" :key="index" class="housingList" @click="center(index)">
-             <!-- <span>地点{{ index+1 }}：</span><br> -->
-              <span>地点：{{ item.loc_id }}</span><br>
-             <!-- <span>id：{{ item.id }}</span><br> -->
-              <span>位置：{{ item.add }}</span><br>
-              <span>经度：{{ item.loclng }}</span><br>
-              <span>纬度：{{ item.loclat }}</span><br>
-              <span>半径：</span>
+              <!-- <span>地点{{ index+1 }}：</span><br> -->
+              <div class="loc-num">
+                <span class="pos-tag num">地点：</span><span class="pos-content num" >{{ item.loc_id }}</span></div>
+              <!-- <span>id：{{ item.id }}</span><br> -->
+              <div id="loc-content">
+              <span class="pos-tag">位置：</span><span class="pos-content">{{ item.add }}</span><br>
+              <span class="pos-tag">经度：</span><span class="pos-content">{{ item.loclng }}</span><br>
+              <span class="pos-tag">纬度：</span><span class="pos-content">{{ item.loclat }}</span><br>
+              <span class="pos-tag">半径：</span>
               <el-input v-model="item.rad" class="radius-input" v-on:input="changeCircle(index)">{{ item.rad }}</el-input><span>米</span><br>
               <!-- <span>{{ item.rad }}</span> -->
-
-
               <el-button v-if="index >= 0" class="delete_button" @click="delete_housing(index)">删除</el-button>
+              </div>
+
+
+
             </li>
 
           </div>
@@ -41,20 +45,21 @@
         </div>
       </el-col>
     </el-row>
-    <el-button
-         style="
+    <el-button style="
            height:50px;
            width:140px;
            float:right;
            margin-right:40px;"
-         type="primary" @click="NextStep()">
-           下一步
-       </el-button>
+      type="primary" @click="NextStep()">
+      下一步
+    </el-button>
   </div>
 </template>
 
 <script>
+  import bus from "./eventbus";
   export default {
+     name:"PositionInput",
     data() {
       return {
         map: "", // 地图对象
@@ -73,7 +78,7 @@
         local_list: [],
         flag: "", //0点  1圆
         id: 1, //用于自增做marker的id
-        loc_id:1,//用于自增做地点的id
+        loc_id: 1, //用于自增做地点的id
         radius: '' //半径
       };
     },
@@ -114,10 +119,10 @@
                   strokeOpacity: 1, // 边线透明度，取值范围0-1
                   fillOpacity: 0.2 // 填充透明度，取值范围0-1
                 });
-                this.map.addOverlay(circle);
-                circle.id=this.id;
-                this.id++;
-              let name='地点'+this.loc_id;
+              this.map.addOverlay(circle);
+              circle.id = this.id;
+              this.id++;
+              let name = '地点' + this.loc_id;
               // 指定文本标注所在的地理位置
               let opts = {
                 position: r.point,
@@ -137,19 +142,20 @@
                 backgroundColor: ""
               });
               this.map.addOverlay(label); //添加文本标注
-              label.id=this.id;
+              label.id = this.id;
               this.id++;
 
 
-              function loc(id,loc_id, add, loclng, loclat, rad) {
+              function loc(id, loc_id, add, loclng, loclat, rad) {
                 this.id = id;
-                this.loc_id=loc_id;
+                this.loc_id = loc_id;
                 this.add = add;
                 this.loclng = loclng;
                 this.loclat = loclat;
                 this.rad = rad;
               }
-              var objloc2 = new loc(markers.id,th.loc_id, r.address.province + r.address.city, r.point.lng, r.point.lat, 0);
+              var objloc2 = new loc(markers.id, th.loc_id, r.address.province + r.address.city, r.point.lng, r.point.lat,
+                0);
               th.local_list.push(objloc2);
               th.loc_id++;
 
@@ -199,10 +205,10 @@
                 strokeOpacity: 1, // 边线透明度，取值范围0-1
                 fillOpacity: 0.2 // 填充透明度，取值范围0-1
               });
-              th.map.addOverlay(circle);
-              circle.id=th.id;
-              th.id++;
-            let name='地点'+th.loc_id;
+            th.map.addOverlay(circle);
+            circle.id = th.id;
+            th.id++;
+            let name = '地点' + th.loc_id;
             // 指定文本标注所在的地理位置
             let opts = {
               position: th.userlocation,
@@ -222,20 +228,20 @@
               backgroundColor: ""
             });
             th.map.addOverlay(label); //添加文本标注
-            label.id=th.id;
+            label.id = th.id;
             th.id++;
 
 
             //?
-            function loc(id,loc_id, add, loclng, loclat, rad) {
+            function loc(id, loc_id, add, loclng, loclat, rad) {
               this.id = id;
-              this.loc_id=loc_id;
+              this.loc_id = loc_id;
               this.add = add;
               this.loclng = loclng;
               this.loclat = loclat;
               this.rad = rad;
             }
-            var objloc1 = new loc(maker.id,th.loc_id, myValue, th.userlocation.lng, th.userlocation.lat, 0);
+            var objloc1 = new loc(maker.id, th.loc_id, myValue, th.userlocation.lng, th.userlocation.lat, 0);
             th.local_list.push(objloc1);
             th.loc_id++;
 
@@ -362,9 +368,9 @@
         // console.log("markercomplete")
         // console.log(event);
         //console.log(overlay.latLng.lat);
-        function loc(id,loc_id, add, loclng, loclat, rad) {
+        function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
-          this.loc_id=loc_id;
+          this.loc_id = loc_id;
           this.add = add;
           this.loclng = loclng;
           this.loclat = loclat;
@@ -375,7 +381,7 @@
         overlay.type = 0;
         // console.log("marker");
         // console.log(overlay);
-        var objloc = new loc(overlay.id,this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, 0);
+        var objloc = new loc(overlay.id, this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, 0);
         this.local_list.push(objloc);
         this.id++;
         this.loc_id++;
@@ -387,9 +393,9 @@
             strokeOpacity: 1, // 边线透明度，取值范围0-1
             fillOpacity: 0.2 // 填充透明度，取值范围0-1
           });
-          this.map.addOverlay(circle);
-          circle.id=this.id;
-          this.id++;
+        this.map.addOverlay(circle);
+        circle.id = this.id;
+        this.id++;
 
         // 指定文本标注所在的地理位置
         let opts = {
@@ -422,9 +428,9 @@
         // console.log("circlecomplete")
         // console.log(event);
         // console.log(overlay);
-        function loc(id,loc_id, add, loclng, loclat, rad) {
+        function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
-          this.loc_id=loc_id;
+          this.loc_id = loc_id;
           this.add = add;
           this.loclng = loclng;
           this.loclat = loclat;
@@ -440,7 +446,7 @@
         this.map.addOverlay(maker_);
         maker_.id = this.id + 1;
         //console.log(maker_);
-        let name='地点'+this.loc_id;
+        let name = '地点' + this.loc_id;
         // 指定文本标注所在的地理位置
         let opts = {
           position: new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),
@@ -460,9 +466,10 @@
           backgroundColor: ""
         });
         this.map.addOverlay(label);
-        label.id=this.id+2;
+        label.id = this.id + 2;
 
-        var objloc = new loc(overlay.id,this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, overlay.radius.toFixed(2));
+        var objloc = new loc(overlay.id, this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, overlay.radius.toFixed(
+          2));
         this.local_list.push(objloc);
         this.id = this.id + 3;
         this.loc_id++;
@@ -480,7 +487,7 @@
         for (let i = 0; i < allOverlay.length; i++) {
           // console.log("alloverlay"+allOverlay[i].id);
           // console.log("location"+location.id);
-          if (allOverlay[i].id == location.id) {//删除连续三个标注
+          if (allOverlay[i].id == location.id) { //删除连续三个标注
             _this.map.removeOverlay(allOverlay[i]);
             _this.map.removeOverlay(allOverlay[i + 1]);
             _this.local_list.splice(index, 1);
@@ -517,7 +524,7 @@
           //console.log(allOverlay[i]);
           if (allOverlay[i].id == this1.local_list[index].id) {
             if (allOverlay[i].type == 0) {
-              allOverlay[i+1].setRadius(radius_num);
+              allOverlay[i + 1].setRadius(radius_num);
 
             } else allOverlay[i].setRadius(radius_num); //更改半径
 
@@ -528,19 +535,19 @@
 
 
       },
-      center(index){
+      center(index) {
         //console.log(index);
-        let th2=this;
-        let location=th2.local_list[index];
-        let point=new BMapGL.Point(location.loclng,location.loclat);
+        let th2 = this;
+        let location = th2.local_list[index];
+        let point = new BMapGL.Point(location.loclng, location.loclat);
         th2.map.centerAndZoom(point, 18);
 
       },
-       NextStep(){
-      		this.$emit("Positionfinished",1)
-      		bus.$emit("sendPositioninfo_1",this.locdata)
-      		bus.$emit("sendPositioninfo_2",this.input)
-            }
+      NextStep() {
+        this.$emit("Positionfinished", 1);
+        bus.$emit("sendPositioninfo_1", this.local_list);
+        //bus.$emit("sendPositioninfo_2", this.input)
+      }
 
 
     }
@@ -659,7 +666,7 @@
 
   .housingList {
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 20px;
     list-style: none;
   }
 
@@ -670,4 +677,44 @@
   .radius-input {
     width: 30%;
   }
+
+  .pos-tag {
+    color: #000000;
+
+  }
+
+  .pos-content {
+    color:#666666;
+    font-size: 14px;
+  }
+
+  .loc-num {
+    width: 80px;
+    font-size: 20px;
+    color: #0079FE;
+    border: #D7D7D7 1.2px solid;
+    border-radius: 4px;
+    border-bottom: 0px;
+
+  }
+  #loc-content{
+    border: #D7D7D7 1.2px solid;
+    width:250px;
+    height:140px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top:10px;
+    padding-left:10px;
+  }
+  .delete_button{
+    float:right;
+    margin-right: 10px;
+
+  }
+  .num{
+    font-size: 20px;
+    color:#0079FE;
+  }
+
+
 </style>
