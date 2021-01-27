@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <div style="margin-bottom: 10px;">
       <el-input id="suggestId" v-model="address_detail" placeholder="请输入地址来查找相关位置" clearable></el-input>
     </div>
@@ -32,6 +30,15 @@
               <span class="pos-tag">半径：</span>
               <el-input v-model="item.rad" class="radius-input" v-on:input="changeCircle(index)">{{ item.rad }}</el-input><span>米</span><br>
               <!-- <span>{{ item.rad }}</span> -->
+               <div class="block">
+                  <el-slider
+                    v-model="item.rad"
+                    v-on:input="changeCircle(index)"
+                    show-input
+                    :min="0" :max="10000"
+                    >
+                  </el-slider>
+                </div>
               <el-button v-if="index >= 0" class="delete_button" @click="delete_housing(index)">删除</el-button>
               </div>
 
@@ -79,7 +86,8 @@
         flag: "", //0点  1圆
         id: 1, //用于自增做marker的id
         //loc_id: 1, //用于自增做地点的id
-        radius: '' //半径
+        radius: '' ,//半径
+        value: 0
       };
     },
     mounted() {
@@ -474,8 +482,8 @@
         this.map.addOverlay(label);
         label.id = this.id + 2;
 
-        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, overlay.radius.toFixed(
-          2));
+        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, parseInt(overlay.radius)
+       );
         this.local_list.push(objloc);
         this.id = this.id + 3;
         this.loc_id++;
@@ -499,7 +507,7 @@
             _this.local_list.splice(index, 1);
             _this.map.removeOverlay(allOverlay[i + 2]);
 
-           
+
           }
 
         }
@@ -720,7 +728,7 @@
   #loc-content{
     border: #D7D7D7 1.2px solid;
     width:250px;
-    height:140px;
+    height:180px;
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top:10px;
@@ -729,6 +737,7 @@
   .delete_button{
     float:right;
     margin-right: 10px;
+    margin-top: 5px;
 
   }
   .num{

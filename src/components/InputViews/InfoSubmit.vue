@@ -6,31 +6,37 @@
 				<el-col :span="2" style="height:45px; line-height:45px; float: left; font-weight: 700; font-size: 13px;">地点信息</el-col>
 			</el-row>
 			<el-table
-			  :data="locdata.filter(data => data.radius!=null && data.radius>0)"
+			  :data="local_list"
 			  border
 			  :header-cell-style="{background:'#FAFAFA'}"
 			  style="width: 90% ;margin:0px auto; margin-bottom: 30px;">
 			  <el-table-column
-			    prop="name"
+			    prop="loc_id"
 			    label="地点"
 			    width="90">
 			  </el-table-column>
 			  <el-table-column
-			  prop="address"
+			  prop="add"
 			    label="具体位置"
 			    width="250">
 			  </el-table-column>
 			  <el-table-column
-			  prop="jingwei"
-			    label="经纬度"
+			  prop="loclng"
+			    label="经度"
 			    width="210">
-				<template
+			<!-- 	<template
 				slot-scope="scope">
 				{{scope.row.direc1}}{{scope.row.jing}}°{{scope.row.jingfen}}'—{{scope.row.direc2}}{{scope.row.wei}}°{{scope.row.weifen}}'
-				</template>
+				</template> -->
 			  </el-table-column>
+        <el-table-column
+          prop="loclat"
+            label="纬度"
+            width="210">
+
+          </el-table-column>
 			  <el-table-column
-			  prop="radius"
+			  prop="rad"
 			    label="范围(km)"
 			    width="170">
 			  </el-table-column>
@@ -286,11 +292,11 @@
 			  <el-button type="primary" @click="dialogFormVisible5 = false">确 定</el-button>
 			</div>
 		</el-dialog>
-    <el-button 
+    <el-button
       style="
         height:50px;
         width:140px;
-        float:right;" 
+        float:right;"
       type="primary" @click="NextStep()">
         下一步
     </el-button>
@@ -307,7 +313,7 @@ export default {
 	    return {
 			weatherForm:"",
 		  	deviceForm:"",
-		  
+
 			input: "",
 			dialogFormVisible: false,
 			dialogFormVisible1: false,
@@ -332,9 +338,16 @@ export default {
 			},
 			locdata: "",
 			taskdata:"",
+      //lxm
       local_list:[],
-      locs:{
-        
+      loc:{
+        id:'',
+        loc_id:'',
+        add:'',
+        loclng:'',
+        loclat:'',
+        rad:''
+
       }
 	    }
 
@@ -352,13 +365,13 @@ export default {
 		bus.$on("sendMissioninfo",function(taskdata){
             that.taskdata = taskdata
 		})
-		bus.$on("sendPositioninfo_1",function(locdata){
-            that.locdata = locdata
+		bus.$on("sendPositioninfo_1",function(local_list){
+            that.local_list = local_list
 		})
 		bus.$on("sendPositioninfo_2",function(input){
             that.input = input
 		})
-		
+
 	},
     methods:{
       NextStep(){
@@ -369,28 +382,41 @@ export default {
 	      },
 		  editInfo(index){
 			const _this = this
-			_this.temloc.jing = _this.locdata[index].jing
-			_this.temloc.jingfen = _this.locdata[index].jingfen
-			_this.temloc.wei = _this.locdata[index].wei
-			_this.temloc.weifen = _this.locdata[index].weifen
-			_this.temloc.direc1 = _this.locdata[index].direc1
-			_this.temloc.direc2 = _this.locdata[index].direc2
-			_this.temloc.address = _this.locdata[index].address
-			_this.temloc.radius = _this.locdata[index].radius
+			// _this.temloc.jing = _this.locdata[index].jing
+			// _this.temloc.jingfen = _this.locdata[index].jingfen
+			// _this.temloc.wei = _this.locdata[index].wei
+			// _this.temloc.weifen = _this.locdata[index].weifen
+			// _this.temloc.direc1 = _this.locdata[index].direc1
+			// _this.temloc.direc2 = _this.locdata[index].direc2
+			// _this.temloc.address = _this.locdata[index].address
+			// _this.temloc.radius = _this.locdata[index].radius
+      _this.loc.loclng=_this.local_list[index].loclng;
+      _this.loc.loclat=_this.local_list[index].loclat;
+      _this.loc.rad=_this.local_list[index].rad;
+      _this.loc.add=_this.local_list[index].add;
+      _this.loc.id=_this.local_list[index].id;
+      _this.loc.loc_id=_this.local_list[index].loc_id;
+
 			_this.dialogFormVisible = true
 			_this.index1 = index
 			//_this.findOneByStoreId(row)
 		  },
 		  editSub(){
 			  const _this = this
-			  _this.locdata[_this.index1].jing = _this.temloc.jing
-			  _this.locdata[_this.index1].jingfen = _this.temloc.jingfen
-			  _this.locdata[_this.index1].wei = _this.temloc.wei
-			  _this.locdata[_this.index1].weifen = _this.temloc.weifen
-			  _this.locdata[_this.index1].direc1 = _this.temloc.direc1
-			  _this.locdata[_this.index1].direc2 = _this.temloc.direc2
-			  _this.locdata[_this.index1].address = _this.temloc.address
-			  _this.locdata[_this.index1].radius = _this.temloc.radius
+			  // _this.locdata[_this.index1].jing = _this.temloc.jing
+			  // _this.locdata[_this.index1].jingfen = _this.temloc.jingfen
+			  // _this.locdata[_this.index1].wei = _this.temloc.wei
+			  // _this.locdata[_this.index1].weifen = _this.temloc.weifen
+			  // _this.locdata[_this.index1].direc1 = _this.temloc.direc1
+			  // _this.locdata[_this.index1].direc2 = _this.temloc.direc2
+			  // _this.locdata[_this.index1].address = _this.temloc.address
+			  // _this.locdata[_this.index1].radius = _this.temloc.radius
+        _this.local_list[_this.index1].loclng=_this.loc.loclng;
+        _this.local_list[_this.index1].loclat=_this.loc.loclat;
+        _this.local_list[_this.index1].rad=_this.loc.rad;
+        _this.local_list[_this.index1].add=_this.loc.add;
+        _this.local_list[_this.index1].id=_this.loc.id;
+        _this.local_list[_this.index1].loc_id=_this.loc.loc_id;
 			  _this.dialogFormVisible = false
 		  },
 		  editEvent(index){
