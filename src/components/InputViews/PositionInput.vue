@@ -78,7 +78,7 @@
         local_list: [],
         flag: "", //0点  1圆
         id: 1, //用于自增做marker的id
-        loc_id: 1, //用于自增做地点的id
+        //loc_id: 1, //用于自增做地点的id
         radius: '' //半径
       };
     },
@@ -110,7 +110,7 @@
               //?
               markers.id = th.id;
               th.id = th.id + 1;
-              markers.type = 0;
+              markers.type = 0;//0标注 1圆 2标签
               let circle = new BMapGL.Circle(r.point,
                 0.1, {
                   strokeColor: "#5E87DB", // 边线颜色
@@ -121,8 +121,10 @@
                 });
               this.map.addOverlay(circle);
               circle.id = this.id;
+              circle.type=1;
               this.id++;
-              let name = '地点' + this.loc_id;
+              let len=this.local_list.length+1;
+              let name = '地点' + len;
               // 指定文本标注所在的地理位置
               let opts = {
                 position: r.point,
@@ -143,7 +145,9 @@
               });
               this.map.addOverlay(label); //添加文本标注
               label.id = this.id;
+              label.type=2;
               this.id++;
+
 
 
               function loc(id, loc_id, add, loclng, loclat, rad) {
@@ -154,7 +158,7 @@
                 this.loclat = loclat;
                 this.rad = rad;
               }
-              var objloc2 = new loc(markers.id, th.loc_id, r.address.province + r.address.city, r.point.lng, r.point.lat,
+              var objloc2 = new loc(markers.id, len, r.address.province + r.address.city, r.point.lng, r.point.lat,
                 0);
               th.local_list.push(objloc2);
               th.loc_id++;
@@ -207,8 +211,10 @@
               });
             th.map.addOverlay(circle);
             circle.id = th.id;
+            circle.type=1;
             th.id++;
-            let name = '地点' + th.loc_id;
+            let len=th.local_list.length+1;
+            let name = '地点' + len;
             // 指定文本标注所在的地理位置
             let opts = {
               position: th.userlocation,
@@ -229,6 +235,7 @@
             });
             th.map.addOverlay(label); //添加文本标注
             label.id = th.id;
+            label.type=2;
             th.id++;
 
 
@@ -241,7 +248,7 @@
               this.loclat = loclat;
               this.rad = rad;
             }
-            var objloc1 = new loc(maker.id, th.loc_id, myValue, th.userlocation.lng, th.userlocation.lat, 0);
+            var objloc1 = new loc(maker.id, len, myValue, th.userlocation.lng, th.userlocation.lat, 0);
             th.local_list.push(objloc1);
             th.loc_id++;
 
@@ -317,9 +324,6 @@
             {
               var drawingType = BMAP_DRAWING_MARKER;
               this.flag = 0;
-              // console.log("target=marker");
-              // console.log("flag="+this.flag);
-
               break;
             }
           case "polyline":
@@ -341,9 +345,6 @@
             {
               var drawingType = BMAP_DRAWING_CIRCLE;
               this.flag = 1;
-              // console.log("target=circle");
-              // console.log("flag="+this.flag);
-
               break;
             }
         }
@@ -377,11 +378,13 @@
           this.rad = rad;
         }
         overlay.id = this.id;
-        let name = '地点' + this.loc_id;
+        let len=this.local_list.length+1;
+        console.log("列表长度："+this.local_list.length);
+        let name = '地点' + len;
         overlay.type = 0;
         // console.log("marker");
         // console.log(overlay);
-        var objloc = new loc(overlay.id, this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, 0);
+        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, 0);
         this.local_list.push(objloc);
         this.id++;
         this.loc_id++;
@@ -418,6 +421,8 @@
         label.id = this.id;
         this.map.addOverlay(label); //添加label
         this.id++;
+        //console.log(label);
+        //label.setContent("didian");
 
 
       },
@@ -446,7 +451,8 @@
         this.map.addOverlay(maker_);
         maker_.id = this.id + 1;
         //console.log(maker_);
-        let name = '地点' + this.loc_id;
+        let len=this.local_list.length+1;
+        let name = '地点' + len;
         // 指定文本标注所在的地理位置
         let opts = {
           position: new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),
@@ -468,7 +474,7 @@
         this.map.addOverlay(label);
         label.id = this.id + 2;
 
-        var objloc = new loc(overlay.id, this.loc_id, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, overlay.radius.toFixed(
+        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, overlay.radius.toFixed(
           2));
         this.local_list.push(objloc);
         this.id = this.id + 3;
@@ -493,17 +499,31 @@
             _this.local_list.splice(index, 1);
             _this.map.removeOverlay(allOverlay[i + 2]);
 
-            // console.log(allOverlay[i].type);
-            // if (allOverlay[i].type == 1) { //如果是圆，删除中心点的标记
-            //   _this.map.removeOverlay(allOverlay[i + 2]);
-            // }
+           
           }
-
-
 
         }
 
-        //this.add_housing_list.splice(index, 1);
+        //改序号
+        let len=_this.local_list.length;
+        let local_list_1=_this.local_list;
+        for(let i=0;i<len;i++){
+          if(local_list_1[i].loc_id!=i+1){
+            local_list_1[i].loc_id=i+1;
+            for (let j = 0; j < allOverlay.length; j++){
+              if (allOverlay[j].id == local_list_1[i].id) {
+                let label=allOverlay[j+2];
+                console.log(label.content);
+                let name="地点"+local_list_1[i].loc_id;
+                label.setContent(name);
+              }
+            }
+
+
+          }
+        }
+
+
       },
       changeCircle(index) {
         console.log(index);
@@ -540,7 +560,7 @@
         let th2 = this;
         let location = th2.local_list[index];
         let point = new BMapGL.Point(location.loclng, location.loclat);
-        th2.map.centerAndZoom(point, 18);
+        th2.map.centerAndZoom(point, 16);
 
       },
       NextStep() {

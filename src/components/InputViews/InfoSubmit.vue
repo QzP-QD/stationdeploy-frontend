@@ -332,6 +332,10 @@ export default {
 			},
 			locdata: "",
 			taskdata:"",
+      local_list:[],
+      locs:{
+        
+      }
 	    }
 
 	},
