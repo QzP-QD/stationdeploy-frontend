@@ -30,7 +30,7 @@
               <span class="pos-tag">半径：</span>
               <el-input v-model="item.rad" class="radius-input" v-on:input="changeCircle(index)">{{ item.rad }}</el-input><span>米</span><br>
               <!-- <span>{{ item.rad }}</span> -->
-               <div class="block">
+               <div class="block" style="height: 80px;">
                   <el-slider
                     v-model="item.rad"
                     v-on:input="changeCircle(index)"
@@ -38,8 +38,9 @@
                     :min="0" :max="10000"
                     >
                   </el-slider>
+                  <el-button v-if="index >= 0" class="delete_button" @click="delete_housing(index)">删除</el-button>
                 </div>
-              <el-button v-if="index >= 0" class="delete_button" @click="delete_housing(index)">删除</el-button>
+
               </div>
 
 
@@ -87,6 +88,7 @@
         id: 1, //用于自增做marker的id
         //loc_id: 1, //用于自增做地点的id
         radius: '' ,//半径
+        pointaddress: '',
         value: 0
       };
     },
@@ -377,6 +379,7 @@
         // console.log("markercomplete")
         // console.log(event);
         //console.log(overlay.latLng.lat);
+        const that = this;
         function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
           this.loc_id = loc_id;
@@ -392,8 +395,17 @@
         overlay.type = 0;
         // console.log("marker");
         // console.log(overlay);
-        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, 0);
-        this.local_list.push(objloc);
+
+        var myGeo = new BMapGL.Geocoder();
+        // 根据坐标得到地址描述
+         myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),  function(result){
+         if (result){
+            that.pointaddress = result.address+"附近";
+            var objloc = new loc(overlay.id, len, that.pointaddress, overlay.latLng.lng, overlay.latLng.lat, 0);
+            that.local_list.push(objloc);
+         }
+         });
+
         this.id++;
         this.loc_id++;
         let circle = new BMapGL.Circle(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),
@@ -441,6 +453,7 @@
         // console.log("circlecomplete")
         // console.log(event);
         // console.log(overlay);
+        const that = this;
         function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
           this.loc_id = loc_id;
@@ -482,13 +495,18 @@
         this.map.addOverlay(label);
         label.id = this.id + 2;
 
-        var objloc = new loc(overlay.id, len, "自定义位置", overlay.latLng.lng, overlay.latLng.lat, parseInt(overlay.radius)
-       );
-        this.local_list.push(objloc);
+        var myGeo = new BMapGL.Geocoder();
+         // 根据坐标得到地址描述
+         myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),  function(result){
+         if (result){
+          that.pointaddress = result.address+"附近";
+          var objloc = new loc(overlay.id, len, that.pointaddress, overlay.latLng.lng, overlay.latLng.lat, parseInt(overlay.radius));
+          that.local_list.push(objloc);
+         }
+         });
+
         this.id = this.id + 3;
         this.loc_id++;
-
-
 
       },
 
@@ -728,7 +746,8 @@
   #loc-content{
     border: #D7D7D7 1.2px solid;
     width:250px;
-    height:180px;
+    height:auto;
+    /* height:180px; */
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top:10px;
