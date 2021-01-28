@@ -41,7 +41,11 @@
 						</div>
 					</div>					
 					<div style="float: left; width: 45%; height: 150px; line-height: 150px;">
-						<el-button style="width: 90px; height: 90px; background-color: red; color: white;"  circle>部署完毕</el-button>
+						<el-button style="width: 90px; height: 90px; background-color: red; color: white;"
+							circle
+							@click="confirmDeploy">
+								部署完毕
+						</el-button>
 					</div>
 				</div>
 
@@ -51,19 +55,12 @@
 				
 			</div>
 		</div>
-    <el-button 
-      style="
-        height:50px;
-        width:140px;
-        float:right;"
-      type="primary" @click="NextStep()">
-        下一步
-    </el-button>
 	</div>
 </template>
 
 <script>
-export default {
+import bus from "./eventbus";
+export default {	
     name:"SuggestPosition",
     data() {
 	    return {
@@ -73,9 +70,10 @@ export default {
 	    }
 	  },
     methods:{
-      NextStep(){
-        this.$router.push({ path: '/command'})  //此处放 通信指挥页面 地址
-      }
+	  confirmDeploy(){
+		  this.$router.push({name:'CommandPage'});
+		  bus.$emit("setActiveindex", '2');
+	  }
     }
 }
 </script>

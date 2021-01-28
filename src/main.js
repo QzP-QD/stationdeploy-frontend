@@ -14,6 +14,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 //导入顶部导航栏
 import Header from "./components/header"
 
+import echarts from 'echarts'
 import PositionInput from "./components/InputViews/PositionInput"
 import MissionInput from "./components/InputViews/MissionInput"
 import WeatherIput from "./components/InputViews/WeatherInput"
@@ -25,6 +26,7 @@ import SuggestPosition from "./components/InputViews/SuggestPosition"
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 
