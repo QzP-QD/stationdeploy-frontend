@@ -103,37 +103,25 @@
           prop="weather"
           label="天气"
           width="300">
-        <template
-        slot-scope="scope">
         {{weatherForm.weatherlist[weatherForm.weather]}}
-        </template>
         </el-table-column>
         <el-table-column
           prop="temperature"
           label="温度"
           width="300">
-        <template
-        slot-scope="scope">
         {{weatherForm.temperature}}℃
-        </template>
         </el-table-column>
         <el-table-column
           prop="wind"
           label="风力"
           width="300">
-        <template
-        slot-scope="scope">
         风力{{weatherForm.wind}}级
-        </template>
         </el-table-column>
         <el-table-column
           prop="humidity"
           label="湿度"
           width="300">
-        <template
-        slot-scope="scope">
         相对湿度：{{weatherForm.humidity}}%
-        </template>
         </el-table-column>
       </el-table>
     </div>
