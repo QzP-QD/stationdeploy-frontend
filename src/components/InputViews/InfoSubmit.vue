@@ -120,7 +120,7 @@
         <el-table-column
           prop="humidity"
           label="湿度"
-          width="300">
+          width="350">
         相对湿度：{{weatherForm.humidity}}%
         </el-table-column>
       </el-table>
@@ -135,10 +135,9 @@
 			border
 			stripe
 			:data="(deviceForm.list_form.devices_onshow).slice((deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize, deviceForm.list_form.currentpage*deviceForm.list_form.pagesize)"
-			style="width: 100%;
+			style="width: 95% ;margin:0px auto;margin-bottom: 30px;
 			        font-size:small; "
 			>
-			<!-- filter(data => data.active_num>0). -->
 			<el-table-column
 			    prop="name"
 			    label="设备名称"
@@ -180,7 +179,7 @@
 			</el-table-column>
 			<el-table-column
 			    label="操作"
-			    width="200">
+			    width="160">
 			    <template slot-scope="scope2">
 			    <el-input-number
 			        v-model="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].active_num"
@@ -209,7 +208,7 @@
         <span>经度：{{ loc.loclng }}</span><br>
         <span>纬度：{{ loc.loclat }}</span><br>
         <span>半径：</span>
-        <el-input v-model="loc.rad" class="radius-input" @keyup.native="proving" >{{ loc.rad }}</el-input><span>米</span><br>
+        <el-input v-model="loc.rad" style="width: 30%;" @keyup.native="proving" >{{ loc.rad }}</el-input><span>米</span><br>
               <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="editSub()">确 定</el-button>
@@ -341,7 +340,7 @@ export default {
       }
 	    }
 
-	},
+    },
 	mounted(){
 		var that = this
         bus.$on("sendWeatherinfo",function(weatherForm){

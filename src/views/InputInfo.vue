@@ -11,7 +11,7 @@
 
       <el-main>
           <el-steps v-bind:active="activeIndex" align-center>
-              <el-step v-for="(title,index) of titlelist" 
+              <el-step v-for="(title,index) of titlelist"
                 :key="index"
                 @click.native="SelectStep(index)"
                 :title="title"/>
@@ -69,7 +69,7 @@ export default {
                   "信息提交",
                   "显示建议基站部署位置"],
     }
-  },  
+  },
   methods:{
     SelectStep(index){
       if(this.stepSuc.includes(index) === true){
@@ -91,18 +91,18 @@ export default {
     font-size:large;
     vertical-align:middle;
     background-color: #FFFFFF;
-  } 
+  }
   .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #999999;
-    
+
   }
-  
+
   .el-main {
     background-color: #FFFFFF;
     color: #333;
   }
-  .router-link-active { 
+  .router-link-active {
     text-decoration: none;
   }
   a {
