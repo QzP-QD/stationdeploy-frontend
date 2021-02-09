@@ -9,6 +9,8 @@ import router from "./router"
 import ElementUI from "element-ui"
 //导入element CSS
 import 'element-ui/lib/theme-chalk/index.css'
+// 导入vue-baidu-map
+import BaiduMap from 'vue-baidu-map'
 
 //导入 自定义公共组件
 //导入顶部导航栏
@@ -20,12 +22,15 @@ import MissionInput from "./components/InputViews/MissionInput"
 import WeatherIput from "./components/InputViews/WeatherInput"
 import DeviceInput from "./components/InputViews/DeviceInput"
 import InfoSubmit from "./components/InputViews/InfoSubmit"
-import SuggestPosition from "./components/InputViews/SuggestPosition"
+import SuggestDeploy from "./components/InputViews/SuggestDeploy"
 
 //使用
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
+Vue.use(BaiduMap, {
+  ak: 'GKHhUN0e9oEwt9OTgVcM9Lrr8kxWEvct'
+})
 Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
@@ -38,7 +43,7 @@ Vue.component("missioin-block", MissionInput)
 Vue.component("weather-block", WeatherIput)
 Vue.component("device-block", DeviceInput)
 Vue.component("submit-block", InfoSubmit)
-Vue.component("suggest-block", SuggestPosition)
+Vue.component("suggest-block", SuggestDeploy)
 
 new Vue({
   el: '#app',
