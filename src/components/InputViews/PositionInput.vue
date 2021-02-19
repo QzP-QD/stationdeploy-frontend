@@ -516,10 +516,10 @@
         let len=_this.local_list.length;
         let local_list_1=_this.local_list;
         for(let i=0;i<len;i++){
-          if(local_list_1[i].loc_id!=i+1){
+          if(local_list_1[i].loc_id!=i+1){//改变所有不是按顺序的地点序号
             local_list_1[i].loc_id=i+1;
             for (let j = 0; j < allOverlay.length; j++){
-              if (allOverlay[j].id == local_list_1[i].id) {
+              if (allOverlay[j].id == local_list_1[i].id) {//更改对应标注的内容
                 let label=allOverlay[j+2];
                 console.log(label.content);
                 let name="地点"+local_list_1[i].loc_id;
