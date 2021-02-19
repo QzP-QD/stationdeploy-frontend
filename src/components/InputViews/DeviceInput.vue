@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-header>
-        <h5 style="height:20px; display:inline-block;">设备列表</h5>            
+        <h5 style="height:20px; display:inline-block;">设备列表</h5>
         <el-button v-show="deviceForm.displayform_index === 0" style="width:7%; font-size:10px; display:inline-block;" type="primary" @click="switch_displayform()">
             切换列表形式
         </el-button>
@@ -17,8 +17,8 @@
                 :key=index
                 :label=item
                 :name=item>
-                <div v-for="(deviceitem, itemid) of 
-                divide_data_class(item).slice((deviceForm.graph_form.pages[index].currentpage-1)*deviceForm.graph_form.pages[index].pagesize, deviceForm.graph_form.pages[index].currentpage*deviceForm.graph_form.pages[index].pagesize)" 
+                <div v-for="(deviceitem, itemid) of
+                divide_data_class(item).slice((deviceForm.graph_form.pages[index].currentpage-1)*deviceForm.graph_form.pages[index].pagesize, deviceForm.graph_form.pages[index].currentpage*deviceForm.graph_form.pages[index].pagesize)"
                     :key=itemid
                     style="width:1200px;
                             display:flex;">
@@ -52,10 +52,10 @@
                     </el-table-column>
                     </el-table>
                     <h5>部署数量：</h5>
-                    <el-input-number 
-                    v-model="deviceitem.active_num" 
-                    :min="0" 
-                    :max="deviceitem.repository_num" 
+                    <el-input-number
+                    v-model="deviceitem.active_num"
+                    :min="0"
+                    :max="deviceitem.repository_num"
                     label="数量">
                     </el-input-number>
                 </div>
@@ -74,7 +74,7 @@
 
         <!-- 列表格式 -->
         <el-main v-show="deviceForm.displayform_index === 1">
-            <el-table 
+            <el-table
             border
             stripe
             :data="(deviceForm.list_form.devices_onshow).slice((deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize, deviceForm.list_form.currentpage*deviceForm.list_form.pagesize)"
@@ -109,7 +109,7 @@
                 label="设备参数"
                 width="420">
                 <template slot-scope="scope">
-                <div 
+                <div
                     v-for="(paramitem,paramidex) of deviceForm.list_form.devices_onshow[(scope.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].params"
                     :key=paramidex>
                     {{paramitem.p_title}}：
@@ -126,10 +126,10 @@
                 label="操作"
                 width="200">
                 <template slot-scope="scope2">
-                <el-input-number 
-                    v-model="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].active_num" 
-                    :min="0" 
-                    :max="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].repository_num" 
+                <el-input-number
+                    v-model="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].active_num"
+                    :min="0"
+                    :max="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].repository_num"
                     label="数量"
                     size="small">
                 </el-input-number>
@@ -148,16 +148,16 @@
             <br>
         </el-main>
         <el-footer style="background-color:#FFFFFF;">
-            <el-button 
+            <el-button
                 style="
                     height:50px;
                     width:140px;
-                    float:right;" 
+                    float:right;"
                 type="primary" @click="NextStep()">
                 下一步
             </el-button>
         </el-footer>
-    </el-container>  
+    </el-container>
 </template>
 
 <script>
@@ -168,7 +168,7 @@ export default {
     name:"DeviceInput",
     data(){
         return{
-            deviceForm:{   
+            deviceForm:{
                 displayform_index: 0, //0：图片形式  1：列表形式
                 device_data:"",
                 graph_form:{
@@ -293,7 +293,7 @@ export default {
                 for(var i=0; i<deviceclass_list.length ;i++){
                 this.deviceForm.list_form.last_deviceclass_list.push(deviceclass_list[i])
                 }
-            }else{  
+            }else{
                 //如果没有对 设备分类 提出新的筛选要求，则延续上一次的筛选
                 for(var i=0 ; i<last_deviceclass_list.length; i++){
                 deviceclass_list.push(last_deviceclass_list[i])
@@ -346,7 +346,7 @@ export default {
 <style scoped>
   .el-header, .el-footer {
     background-color: #B3C0D1;
-    color: #999999; 
+    color: #999999;
   }
   .el-main {
     background-color: #FFFFFF;

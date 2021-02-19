@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "element-ui": "^2.14.1",
-    "vue": "^2.5.2",
-    "vue-axios": "^3.2.1"
+    "echarts": "^4.9.0",
+    "element-ui": "^2.15.0",
+    "vue": "^2.6.12",
+    "vue-axios": "^3.2.1",
+    "vue-baidu-map": "^0.21.22"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

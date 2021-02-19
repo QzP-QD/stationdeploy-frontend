@@ -1,0 +1,11 @@
+{
+  "deploy_location": [
+    {
+      "device_mapID": 1,
+      "location": {
+        "lnt": 0,
+        "lat": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+    "event":[
+      {
+        "inputtype":"事件类型",
+        "inputresult":"泥石流"
+      },
+      {
+        "inputtype":"事件规模",
+        "inputresult":"重大"
+      },
+      {
+        "inputtype":"地点类型",
+        "inputresult":"森林"
+      },
+      {
+        "inputtype":"救援任务",
+        "inputresult":"控制危险源"
+      },
+      {
+        "inputtype":"数据任务",
+        "inputresult":"数据报文"
+      }
+    ]
+}

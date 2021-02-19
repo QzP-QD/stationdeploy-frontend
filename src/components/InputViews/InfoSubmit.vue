@@ -37,7 +37,7 @@
           </el-table-column>
 			  <el-table-column
 			  prop="rad"
-			    label="范围(km)"
+			    label="范围(m)"
 			    width="170">
 			  </el-table-column>
 			  <el-table-column label="操作">
@@ -46,6 +46,10 @@
 			      <el-button
 			        size="mini"
 			        @click="editInfo(scope.$index)">调整</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="deleteInfo(scope.$index)">删除</el-button>
 			    </template>
 			  </el-table-column>
 			</el-table>
@@ -85,6 +89,43 @@
 			</el-table>
 		</div>
 
+    <!-- 天气信息 -->
+    <div style="width: 100%; height: auto; border: 1px solid gray;margin-top: 40px;">
+    	<el-row>
+    		<el-col :span="2" style="height:45px; line-height:45px; float: left; font-weight: 700; font-size: 13px;">天气信息</el-col>
+    	</el-row>
+      <el-table
+      :data="testForm"
+        border
+        :header-cell-style="{background:'#FAFAFA'}"
+        style="width: 90% ;margin:0px auto;margin-bottom: 30px;">
+        <el-table-column
+          prop="weather"
+          label="天气"
+          width="300">
+        {{weatherForm.weatherlist[weatherForm.weather]}}
+        </el-table-column>
+        <el-table-column
+          prop="temperature"
+          label="温度"
+          width="300">
+        {{weatherForm.temperature}}℃
+        </el-table-column>
+        <el-table-column
+          prop="wind"
+          label="风力"
+          width="300">
+        风力{{weatherForm.wind}}级
+        </el-table-column>
+        <el-table-column
+          prop="humidity"
+          label="湿度"
+          width="350">
+        相对湿度：{{weatherForm.humidity}}%
+        </el-table-column>
+      </el-table>
+    </div>
+
 		<!-- 设备信息 -->
 		<div style="width: 100%; height: auto; border: 1px solid gray;margin-top: 40px;">
 			<el-row>
@@ -94,10 +135,9 @@
 			border
 			stripe
 			:data="(deviceForm.list_form.devices_onshow).slice((deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize, deviceForm.list_form.currentpage*deviceForm.list_form.pagesize)"
-			style="width: 100%;
+			style="width: 95% ;margin:0px auto;margin-bottom: 30px;
 			        font-size:small; "
 			>
-			<!-- filter(data => data.active_num>0). -->
 			<el-table-column
 			    prop="name"
 			    label="设备名称"
@@ -139,7 +179,7 @@
 			</el-table-column>
 			<el-table-column
 			    label="操作"
-			    width="200">
+			    width="160">
 			    <template slot-scope="scope2">
 			    <el-input-number
 			        v-model="deviceForm.list_form.devices_onshow[(scope2.$index+(deviceForm.list_form.currentpage-1)*deviceForm.list_form.pagesize)].active_num"
@@ -163,54 +203,16 @@
 		</div>
 
 		<el-dialog title="调整" :visible.sync="dialogFormVisible" width="25%">
-		  <el-form ref="temloc" :model="temloc" label-width="40px" size="mini">
-		  	<el-form-item label="">
-		  		  <el-radio-group v-model="temloc.direc1" style="display: block;">
-		  		    <el-radio label="东经"></el-radio>
-		  		    <el-radio label="西经"></el-radio>
-		  		  </el-radio-group>
-		  		</el-form-item>
-		  <el-row type="flex" class="row-bg">
-		  	<el-col :span="24">
-		  		<el-form-item label="经度:" prop="jing" label-width="55px">
-		  			<el-input style="width: 80px;" v-model="temloc.jing">
-		  				<i slot="suffix" style="font-style:normal;margin-right: 10px;">度</i>
-		  			</el-input>
-		  			<el-input style="width: 80px;" v-model="temloc.jingfen">
-		  				<i slot="suffix" style="font-style:normal;margin-right: 10px;">分</i>
-		  			</el-input>
-		  		</el-form-item>
-		  	</el-col>
-		  </el-row>
-		  <el-form-item label="">
-		  	  <el-radio-group v-model="temloc.direc2" style="display: block;">
-		  	    <el-radio label="北纬"></el-radio>
-		  	    <el-radio label="南纬"></el-radio>
-		  	  </el-radio-group>
-		  	</el-form-item>
-		  <el-row type="flex" class="row-bg">
-		  	<el-col :span="24">
-		  		<el-form-item label="纬度:" prop="wei" label-width="55px">
-		  			<el-input style="width: 80px;" v-model="temloc.wei">
-		  				<i slot="suffix" style="font-style:normal;margin-right: 10px;">度</i>
-		  			</el-input>
-		  			<el-input style="width: 80px;" v-model="temloc.weifen">
-		  				<i slot="suffix" style="font-style:normal;margin-right: 10px;">分</i>
-		  			</el-input>
-		  		</el-form-item>
-		  	</el-col>
-		  </el-row>
-		  <el-form-item label="具体地址:" label-width="80px">
-		      <el-input v-model="temloc.address" style="width: 130px;"></el-input>
-		    </el-form-item>
-		    <el-form-item label="扩散半径:" label-width="80px">
-		        <el-input-number v-model="temloc.radius" @change="handleChange" :min="0" :max="100" label="描述文字"></el-input-number>
-		      </el-form-item>
-		  </el-form>
-		  <div slot="footer" class="dialog-footer">
-		    <el-button @click="dialogFormVisible = false">取 消</el-button>
-		    <el-button type="primary" @click="editSub()">确 定</el-button>
-		  </div>
+        <span>地点：{{ loc.loc_id }}</span><br>
+        <span>位置：{{ loc.add }}</span><br>
+        <span>经度：{{ loc.loclng }}</span><br>
+        <span>纬度：{{ loc.loclat }}</span><br>
+        <span>半径：</span>
+        <el-input v-model="loc.rad" style="width: 30%;" @keyup.native="proving" >{{ loc.rad }}</el-input><span>米</span><br>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="editSub()">确 定</el-button>
+              </div>
 		</el-dialog>
 
 		<el-dialog title="调整" :visible.sync="dialogFormVisible1" width="30%">
@@ -311,10 +313,9 @@ export default {
     name:"InfoSubmit",
     data() {
 	    return {
+      testForm: [{t: 1}],   //使天气表格行数为1
 			weatherForm:"",
-		  	deviceForm:"",
-
-			input: "",
+		  deviceForm:"",
 			dialogFormVisible: false,
 			dialogFormVisible1: false,
 			dialogFormVisible2: false,
@@ -324,18 +325,6 @@ export default {
 			formLabelWidth: '120px',
 			index1: '',
 			index2: '',
-			temloc:
-			{
-				name: 'tem',
-				jing: '',
-				jingfen: '',
-				wei: '',
-				weifen: '',
-				direc1: '',
-				direc2: '',
-				address: '',
-				radius: ''
-			},
 			locdata: "",
 			taskdata:"",
       //lxm
@@ -351,7 +340,7 @@ export default {
       }
 	    }
 
-	},
+    },
 	mounted(){
 		var that = this
         bus.$on("sendWeatherinfo",function(weatherForm){
@@ -368,9 +357,6 @@ export default {
 		bus.$on("sendPositioninfo_1",function(local_list){
             that.local_list = local_list
 		})
-		bus.$on("sendPositioninfo_2",function(input){
-            that.input = input
-		})
 
 	},
     methods:{
@@ -382,14 +368,6 @@ export default {
 	      },
 		  editInfo(index){
 			const _this = this
-			// _this.temloc.jing = _this.locdata[index].jing
-			// _this.temloc.jingfen = _this.locdata[index].jingfen
-			// _this.temloc.wei = _this.locdata[index].wei
-			// _this.temloc.weifen = _this.locdata[index].weifen
-			// _this.temloc.direc1 = _this.locdata[index].direc1
-			// _this.temloc.direc2 = _this.locdata[index].direc2
-			// _this.temloc.address = _this.locdata[index].address
-			// _this.temloc.radius = _this.locdata[index].radius
       _this.loc.loclng=_this.local_list[index].loclng;
       _this.loc.loclat=_this.local_list[index].loclat;
       _this.loc.rad=_this.local_list[index].rad;
@@ -401,16 +379,23 @@ export default {
 			_this.index1 = index
 			//_this.findOneByStoreId(row)
 		  },
+      deleteInfo(index) {
+        const _this = this
+        this.$confirm('确定删除 ?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+              _this.local_list.splice(index, 1);
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+      },
 		  editSub(){
 			  const _this = this
-			  // _this.locdata[_this.index1].jing = _this.temloc.jing
-			  // _this.locdata[_this.index1].jingfen = _this.temloc.jingfen
-			  // _this.locdata[_this.index1].wei = _this.temloc.wei
-			  // _this.locdata[_this.index1].weifen = _this.temloc.weifen
-			  // _this.locdata[_this.index1].direc1 = _this.temloc.direc1
-			  // _this.locdata[_this.index1].direc2 = _this.temloc.direc2
-			  // _this.locdata[_this.index1].address = _this.temloc.address
-			  // _this.locdata[_this.index1].radius = _this.temloc.radius
         _this.local_list[_this.index1].loclng=_this.loc.loclng;
         _this.local_list[_this.index1].loclat=_this.loc.loclat;
         _this.local_list[_this.index1].rad=_this.loc.rad;
@@ -438,6 +423,10 @@ export default {
 		  handleCurrentChange_list(val){                    //”列表形式“下翻页
 		      this.deviceForm.list_form.currentpage = val
 		  },
+      proving() {
+          	this.loc.rad = this.loc.rad.replace(/[^\.\d]/g,'');
+          	this.loc.rad = this.loc.rad.replace('.','');
+      },
 		getactivedevices(){
 			const _this = this
 			var resultlist = []

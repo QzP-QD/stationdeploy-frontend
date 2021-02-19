@@ -8,13 +8,12 @@
             background-color="#333333"
             text-color="#EDEDED"
             active-text-color="#FFFFFF">
-
             <el-menu-item>
                 <el-image style="width: 50px; height: 50px" :src="url" ></el-image>
                 应急网络部署软件
             </el-menu-item>
             <el-menu-item  index="1">
-              <router-link to="/input">信息输入</router-link>
+              <router-link to="/">信息输入</router-link>
             </el-menu-item>
             <el-menu-item  index="2">
               <router-link to="/command">通信指挥</router-link>
@@ -27,6 +26,7 @@
     </div>
 </template>
 <script>
+  import bus from "./InputViews/eventbus";
   export default {
     name:"Header",
     data() {
@@ -34,6 +34,13 @@
         activeIndex: '1',
         url: '../static/logo.png'
       };
+    },
+    mounted(){
+      var that = this
+      bus.$on("setActiveindex", function(activeindex){
+        that.activeIndex = activeindex
+        console.log(that.activeIndex)
+      })
     },
     methods: {
       handleSelect(key, keyPath) {

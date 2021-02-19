@@ -11,15 +11,16 @@ import InfoManage from "../views/InfoManage"
 Vue.use(VueRouter);
 //导出
 export default new VueRouter({
+    mode: 'history',
     routes:[
         {
             //信息导入界面
-            path:'/input',
+            path:'/',
             component: Input,
-            
         },
         {
             //指挥调度界面
+            name:"CommandPage",
             path:'/command',
             component:Command
         },
