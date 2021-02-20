@@ -1,11 +1,74 @@
 {
   "deploy_location": [
     {
+      "device_mapID": 0,
+      "device_libID": "000",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.378847, "lat": 39.925182 },
+      "down_connect_mapID": [1, 2]
+    },
+    {
       "device_mapID": 1,
-      "location": {
-        "lnt": 0,
-        "lat": 0
-      }
+      "device_libID": "001",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.391424, "lat": 39.924518 },
+      "down_connect_mapID": [2, 3]
+    },
+    {
+      "device_mapID": 2,
+      "device_libID": "002",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.400047, "lat": 39.917546 },
+      "down_connect_mapID": [3]
+    },
+    {
+      "device_mapID": 3,
+      "device_libID": "003",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.382872, "lat": 39.914281 },
+      "down_connect_mapID": [4]
+    },
+    {
+      "device_mapID": 4,
+      "device_libID": "004",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.411474, "lat": 39.923633 },
+      "down_connect_mapID": [5, 6]
+    },
+    {
+      "device_mapID": 5,
+      "device_libID": "001",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.417079, "lat": 39.912067 },
+      "down_connect_mapID": [6]
+    },
+    {
+      "device_mapID": 6,
+      "device_libID": "001",
+      "device_name": "设备x",
+      "device_type": "mesh",
+      "radiation_radius": 1202,
+      "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
+      "location": { "lng": 116.401125, "lat": 39.906034 },
+      "down_connect_mapID": []
     }
   ]
 }

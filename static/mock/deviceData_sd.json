@@ -4,63 +4,72 @@
       "id": "000",
       "name": "设备0",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "001",
       "name": "设备1",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "002",
       "name": "设备2",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "003",
       "name": "设备3",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "004",
       "name": "设备4",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "005",
       "name": "设备5",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "006",
       "name": "设备6",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "007",
       "name": "设备7",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     },
     {
       "id": "008",
       "name": "设备8",
       "picurl": "http://localhost:8080/static/suggest_deploy_pic/baseStation.png",
-      "devicetype": "LTE",
+      "type": "LTE",
+      "radiation_radius": 1203,
       "purpose": "适用于应急场景前端视频采集与回传业务"
     }
   ]

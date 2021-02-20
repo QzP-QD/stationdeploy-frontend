@@ -4,11 +4,10 @@
       <el-aside class="left">
         <item-container
           @restore-default="restoreDefault($event)"
-          @deploy-success="deploySuccess($event)"
         ></item-container>
       </el-aside>
       <el-main class="main">
-        <BdMap :suggest_location="suggest_location"></BdMap>
+        <SuggestMap :suggest_location="suggest_location"></SuggestMap>
       </el-main>
     </el-container>
   </div>
@@ -16,7 +15,7 @@
 
 <script>
 import ItemContainer from "../suggestDeployViews/ItemContainer";
-import BdMap from "../suggestDeployViews/BdMap";
+import SuggestMap from "../suggestDeployViews/SuggestMap";
 
 export default {
   data() {
@@ -27,14 +26,11 @@ export default {
   name: "app",
   components: {
     ItemContainer,
-    BdMap
+    SuggestMap
   },
   methods: {
     restoreDefault(suggestLocation) {
       this.suggest_location = suggestLocation;
-    },
-    deploySuccess(GprsLocation) {
-      console.log("deploy", GprsLocation);
     }
   }
 };
@@ -42,15 +38,11 @@ export default {
 
 <style scoped>
 .left {
-  width: 330px !important;
+  width: 300px !important;
 }
 
 .main {
-  border: 2px solid rgb(8, 175, 241);
-}
-
-.el-hearder {
-  height: 100px;
+  border: 2px solid rgb(6, 103, 248);
 }
 
 .el-main {
