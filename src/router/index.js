@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import Input from "../views/InputInfo"
 import Command from "../views/Command"
 import InfoManage from "../views/InfoManage"
+import SuggestDeploy from '../views/SuggestDeploy'
 
 //使用
 Vue.use(VueRouter);
@@ -14,13 +15,19 @@ export default new VueRouter({
     mode: 'history',
     routes:[
         {
+            path: '/',
+            redirect: '/input'
+        },
+        {
             //信息导入界面
-            path:'/',
+            path:'/input',
             component: Input,
         },
         {
-            //指挥调度界面
-            name:"CommandPage",
+            path: '/suggest',
+            component: SuggestDeploy
+        },
+        {
             path:'/command',
             component:Command
         },

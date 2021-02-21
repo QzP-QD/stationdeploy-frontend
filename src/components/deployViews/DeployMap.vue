@@ -69,6 +69,7 @@
             <InfoContent
               :device_item="device_graph[index]"
               :connect_objs="connect_objs_onClick"
+              @other="handleOther"
             ></InfoContent>
           </bm-info-window>
         </bm-marker>
@@ -88,7 +89,7 @@
   </div>
 </template>
 <script>
-import InfoContent from "../suggestDeployViews/InfoContent";
+import InfoContent from "./InfoContent";
 export default {
   components: { InfoContent },
   data() {
@@ -121,6 +122,7 @@ export default {
     }
   },
   methods: {
+    handleOther() {},
     infoWindowClose(index) {
       this.device_graph[index].show_window = false;
     },

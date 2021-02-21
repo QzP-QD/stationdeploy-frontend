@@ -110,7 +110,7 @@ export default {
       })
     },
     deploySuccess () {
-      this.$router.push('/command')
+      this.$router.replace('/command')
     },
   },
   created () { this.getDeviceData() },

@@ -245,6 +245,8 @@ export default {
     },
     SubmitChange() {
       //提交任务修改信息到后台
+      //获取后台建议数据后修改路由
+      this.$router.replace("/suggest");
     },
 
     drawLine() {

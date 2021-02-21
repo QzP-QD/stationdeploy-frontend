@@ -15,6 +15,8 @@ import BaiduMap from 'vue-baidu-map'
 //导入 自定义公共组件
 //导入顶部导航栏
 import Header from "./components/header"
+import InputHeader from './components/InputHeader'
+import SuggestHeader from './components/SuggestHeader'
 
 import echarts from 'echarts'
 import PositionInput from "./components/InputViews/PositionInput"
@@ -22,7 +24,6 @@ import MissionInput from "./components/InputViews/MissionInput"
 import WeatherIput from "./components/InputViews/WeatherInput"
 import DeviceInput from "./components/InputViews/DeviceInput"
 import InfoSubmit from "./components/InputViews/InfoSubmit"
-import SuggestDeploy from "./components/InputViews/SuggestDeploy"
 
 //使用
 Vue.use(VueRouter)
@@ -36,6 +37,8 @@ Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 
 Vue.component("top-header", Header)
+Vue.component("input-header", InputHeader)
+Vue.component("suggest-header", SuggestHeader)
 
 //信息导组件
 Vue.component("position-block", PositionInput)
@@ -43,7 +46,6 @@ Vue.component("missioin-block", MissionInput)
 Vue.component("weather-block", WeatherIput)
 Vue.component("device-block", DeviceInput)
 Vue.component("submit-block", InfoSubmit)
-Vue.component("suggest-block", SuggestDeploy)
 
 new Vue({
   el: '#app',

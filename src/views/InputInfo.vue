@@ -1,14 +1,8 @@
 <template>
   <el-container id="outside" direction="vertical">
     <el-header>
-      <top-header style="width:100%"></top-header>
-      <!-- <div id="topline">
-              <div v-for="(title, index) of titlelist"
-                :key='index'
-                v-show="activeIndex===index">{{titlelist[index]}}</div>
-          </div> -->
+      <input-header style="width:100%"></input-header>
     </el-header>
-
     <el-main>
       <el-steps
         v-bind:active="activeIndex"
@@ -45,11 +39,6 @@
       <div v-show="activeIndex === 4">
         <submit-block @Submitfinished="SetSection"></submit-block>
       </div>
-
-      <!-- 显示建议基站部署位置 -->
-      <div v-show="activeIndex === 5">
-        <suggest-block></suggest-block>
-      </div>
     </el-main>
     <el-footer>
       <br />
@@ -72,8 +61,7 @@ export default {
         "事件/任务导入",
         "天气导入",
         "设备导入",
-        "信息提交",
-        "显示建议基站部署位置"
+        "信息提交"
       ]
     };
   },
