@@ -26,7 +26,7 @@
           <div class="title">{{ titles[1] }}</div>
         </template>
         <div class="content">
-          <div style="width: 100%; height: 150px;">
+          <div style="width: 100%; height: 200px;">
             <div style="float: left;width: 55%;height: 150px;">
               <div
                 style=" width: 100%; height: 60px; line-height: 75px; text-align:center"
@@ -38,8 +38,8 @@
               <div
                 style="width: 100%; height: 75px; line-height: 75px;text-align:center"
               >
-                <el-button type="primary" @click="infoPreview"
-                  >信息预览</el-button
+                <el-button type="primary" @click="submitTopology"
+                  >提交修改</el-button
                 >
               </div>
             </div>
@@ -53,6 +53,11 @@
                 >部署完毕</el-button
               >
             </div>
+            <center><div style="width: 80%; height: 80px;">
+              <el-button style="align:center;width:100%" type="primary" @click="infoPreview"
+                >信息预览</el-button
+              >
+            </div></center>
           </div>
         </div>
       </el-collapse-item>
