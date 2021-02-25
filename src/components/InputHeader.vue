@@ -14,10 +14,7 @@
         应急网络部署软件
       </el-menu-item>
       <el-menu-item index="1">
-        <router-link to="/command">通信指挥</router-link>
-      </el-menu-item>
-      <el-menu-item index="2">
-        <router-link to="/infomanage">输入信息管理</router-link>
+        <router-link to="/input">信息输入</router-link>
       </el-menu-item>
     </el-menu>
   </div>

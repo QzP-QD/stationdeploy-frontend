@@ -1,9 +1,6 @@
 <template>
   <div class="container">
-    <div
-      class="img_box"
-      @dragstart="handle_start"
-    >
+    <div class="img_box" @dragstart="handle_start">
       <img :src="device_data.picurl" />
     </div>
     <div class="title_box">
@@ -21,7 +18,7 @@ export default {
   methods: {
     handle_start (e) {
       console.log('dragstart-', e.clientX, ',', e.clientY)
-      var transData = { picurl: this.device_data.picurl, device_libID: this.device_data.id }
+      var transData = { picurl: this.device_data.picurl, device_libID: this.device_data.id, device_name: this.device_data.name, device_type: this.device_data.type, radiation_radius: this.device_data.radiation_radius }
       e.dataTransfer.setData('text/plain', JSON.stringify(transData))
       e.dataTransfer.effectAllowed = 'copy'
     }

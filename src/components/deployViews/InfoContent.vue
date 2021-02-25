@@ -39,7 +39,7 @@
         :row-style="{ height: '20px' }"
         :cell-style="{ padding: '0px' }"
         :header-row-style="{ height: '35px' }"
-        :header-cell-style="{ padding: '0px',color:'black' }"
+        :header-cell-style="{ padding: '0px', color: 'black' }"
       >
         <el-table-column
           prop="mapID"
@@ -60,26 +60,13 @@
             <el-button
               size="mini"
               type="text"
-              @click="handleDelConnect(scope.$index, scope.row)"
-              >删除</el-button
+              @click="handleOther(scope.$index, scope.row)"
+              >其他</el-button
             >
           </template>
         </el-table-column>
       </el-table>
     </div>
-    <el-tag size="small">节点操作</el-tag>
-    <el-row class="btnbox">
-      <el-col :span="12"
-        ><el-button size="small" type="primary" @click="handleAddConnect"
-          >新增连接</el-button
-        ></el-col
-      >
-      <el-col :span="12">
-        <el-button size="small" type="danger" @click="handleDelNode"
-          >删除节点</el-button
-        ></el-col
-      >
-    </el-row>
   </div>
 </template>
 
@@ -109,15 +96,9 @@ export default {
   },
   created () {},
   methods: {
-    handleDelConnect (index, rowObj) {
-      this.$emit('del_connect', [rowObj.mapID, this.device_item.mapID])
+    handleOther () {
+      this.$emit('other')
     },
-    handleDelNode () {
-      this.$emit('del_node', this.device_item.mapID)
-    },
-    handleAddConnect () {
-      this.$emit('add_connect', this.device_item.mapID)
-    }
   },
   components: {}
 }

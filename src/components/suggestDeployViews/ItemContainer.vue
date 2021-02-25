@@ -16,9 +16,7 @@
               :key="index"
               :span="8"
             >
-              <Item
-                :device_data="device_item"
-              ></Item>
+              <Item :device_data="device_item"></Item>
             </el-col>
           </el-row>
         </div>
@@ -79,7 +77,7 @@ export default {
     getDeviceData () {
       this.axios({
         method: 'get',
-        url: 'http://localhost:8080/static/mock/deviceData_sd.json'
+        url: 'http://localhost:8080/static/mock/devicedata_sd.json'
       }).then(rep => {
         const data = rep.data.devices
         this.device_rows = this.devideRow(data)
@@ -105,22 +103,15 @@ export default {
     fetchSuggestLocation () {
       this.axios({
         method: 'get',
-        url: 'http://localhost:8080/static/mock/suggestData.json'
+        url: 'http://localhost:8080/static/mock/suggestdata.json'
       }).then(rep => {
         this.suggest_location = rep.data
         this.$emit('restore-default', this.suggest_location)
       })
     },
     deploySuccess () {
-      this.fetchGprsLocation()
+      this.$router.replace('/command')
     },
-    fetchGprsLocation () {
-      // 网络请求获取定位后位置数据
-      this.$emit('deploy-success')
-    },
-    infoPreview () {
-      // 修改路由
-    }
   },
   created () { this.getDeviceData() },
   mounted () { this.restoreDefault() },
@@ -132,13 +123,12 @@ export default {
 
 <style scoped>
 .title {
-  margin-left: 10px;
   font-size: 15px;
   font-weight: bold;
   line-height: 1.4;
 }
 
-.head_mdy/deep/ .el-collapse-item__header {
+.head_mdy >>> .el-collapse-item__header {
   height: auto !important;
   padding: 3px;
   padding-left: 8px;
@@ -146,7 +136,7 @@ export default {
   border-bottom-color: black;
 }
 
-.content_mdy/deep/ .el-collapse-item__content {
+.content_mdy >>> .el-collapse-item__content {
   padding: 5px !important;
 }
 
@@ -154,7 +144,7 @@ export default {
   border: 1px solid black;
   width: 262px;
   min-height: 650px;
-  margin: 0 auto;
+  /* margin: 0 auto;  // 居中*/
 }
 
 .el-row {

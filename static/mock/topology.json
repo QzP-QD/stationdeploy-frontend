@@ -1,0 +1,25 @@
+{
+      "data":[
+        {"name": "设备1","category": 0,"draggable": true},
+        {"name": "设备2","category": 0,"draggable": true},
+        {"name": "设备3","category": 0,"draggable": true},
+        {"name": "设备4","category": 0,"draggable": true},
+        {"name": "设备5","category": 0,"draggable": true},
+        {"name": "设备6","category": 0,"draggable": true},
+         {"name": "设备7","category": 0,"draggable": true}],
+      "links":[
+        {"source": 0,"target": 1,"category": 1},
+         {"source": 0,"target": 2,"category": 1},
+         {"source": 1,"target": 2,"category": 1},
+         {"source": 1,"target": 3,"category": 1},
+         {"source": 2,"target": 3,"category": 1},
+         {"source": 3,"target": 4,"category": 1},
+         {"source": 4,"target": 5,"category": 1},
+         {"source": 4,"target": 6,"category": 1},
+         {"source": 5,"target": 6,"category": 1}
+                   ]
+
+    
+  
+
+}
