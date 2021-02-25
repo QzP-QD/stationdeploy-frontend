@@ -217,10 +217,14 @@ export default {
         method: "get",
         url: "http://localhost:8080/static/mock/weatherdata.json"
       }).then(function(response) {
-        that.weatherForm.weather = response.data.weatherdata.weather;
-        that.weatherForm.temperature = response.data.weatherdata.temperature;
-        that.weatherForm.wind = response.data.weatherdata.wind;
-        that.weatherForm.humidity = response.data.weatherdata.humidity;
+        if(response.data.success){
+          that.weatherForm.weather = response.data.data.weather;
+          that.weatherForm.temperature = response.data.data.temperature;
+          that.weatherForm.wind = response.data.data.wind;
+          that.weatherForm.humidity = response.data.data.humidity;
+        }else{
+          alert('获取天气失败')
+        }
       });
       //2、获取成功，显示天气
       this.weatherForm.previewweather = 1;

@@ -1,5 +1,6 @@
 {
-    "device_data":{
+    "success":true,
+    "data":{
         "classification":[
             "单兵自组网电台",
             "车载自组网电台",

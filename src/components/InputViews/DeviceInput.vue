@@ -243,34 +243,38 @@ export default {
         method: "get",
         url: "http://localhost:8080/static/mock/devicedata_2.json"
       }).then(function(response) {
-        //将获取的数据导入到data域中
-        that.deviceForm.device_data = response.data.device_data;
-        //设备（列表展示下）的要显示的数据
-        that.deviceForm.list_form.devices_onshow = that.divide_data(
-          that.deviceForm.list_form.last_deviceclass_list,
-          that.deviceForm.list_form.last_devicetype_list
-        );
-
-        //设备（列表展示下）的筛选条件
-        var classification = that.deviceForm.device_data.classification;
-        var type = that.deviceForm.device_data.type;
-        for (var i = 0; i < classification.length; i++) {
-          that.deviceForm.list_form.class_filter.push({
-            text: classification[i],
-            value: classification[i]
-          });
-        }
-        for (var i = 0; i < type.length; i++) {
-          that.deviceForm.list_form.type_filter.push({
-            text: type[i],
-            value: type[i]
-          });
-        }
-        //设备（图片展示下）的分页情况
-        var num = that.deviceForm.device_data.classification.length;
-        for (var i = 0; i < num; i++) {
-          var tempobj = { currentpage: 1, pagesize: 2 };
-          that.deviceForm.graph_form.pages.push(tempobj);
+        if(response.data.success){
+          //将获取的数据导入到data域中
+          that.deviceForm.device_data = response.data.data;
+          //设备（列表展示下）的要显示的数据
+          that.deviceForm.list_form.devices_onshow = that.divide_data(
+            that.deviceForm.list_form.last_deviceclass_list,
+            that.deviceForm.list_form.last_devicetype_list
+          );
+  
+          //设备（列表展示下）的筛选条件
+          var classification = that.deviceForm.device_data.classification;
+          var type = that.deviceForm.device_data.type;
+          for (var i = 0; i < classification.length; i++) {
+            that.deviceForm.list_form.class_filter.push({
+              text: classification[i],
+              value: classification[i]
+            });
+          }
+          for (var i = 0; i < type.length; i++) {
+            that.deviceForm.list_form.type_filter.push({
+              text: type[i],
+              value: type[i]
+            });
+          }
+          //设备（图片展示下）的分页情况
+          var num = that.deviceForm.device_data.classification.length;
+          for (var i = 0; i < num; i++) {
+            var tempobj = { currentpage: 1, pagesize: 2 };
+            that.deviceForm.graph_form.pages.push(tempobj);
+          }
+        }else{
+          alert('获取设备信息失败')
         }
       });
     },

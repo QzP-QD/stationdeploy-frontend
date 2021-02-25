@@ -1,5 +1,6 @@
 {
-    "weatherdata": {
+    "success":true,
+    "data": {
         "weather":2,
         "temperature": 36,
         "wind":"2",
