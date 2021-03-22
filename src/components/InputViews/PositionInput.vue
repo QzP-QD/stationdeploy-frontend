@@ -617,7 +617,7 @@ export default {
       th2.map.centerAndZoom(point, 16);
     },
     NextStep() {
-      this.$emit("Positionfinished", 1);
+      this.$emit("Positionfinished", 2);
       bus.$emit("sendPositioninfo_1", this.local_list);
       //bus.$emit("sendPositioninfo_2", this.input)
     }

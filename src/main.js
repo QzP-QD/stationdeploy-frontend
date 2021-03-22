@@ -24,6 +24,7 @@ import MissionInput from "./components/InputViews/MissionInput"
 import WeatherIput from "./components/InputViews/WeatherInput"
 import DeviceInput from "./components/InputViews/DeviceInput"
 import InfoSubmit from "./components/InputViews/InfoSubmit"
+import downloadSpeed from "./components/charts/downloadSpeed"
 
 //使用
 Vue.use(VueRouter)
@@ -46,6 +47,7 @@ Vue.component("missioin-block", MissionInput)
 Vue.component("weather-block", WeatherIput)
 Vue.component("device-block", DeviceInput)
 Vue.component("submit-block", InfoSubmit)
+Vue.use(downloadSpeed)
 
 new Vue({
   el: '#app',

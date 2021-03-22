@@ -210,7 +210,7 @@ export default {
       var that = this;
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$emit("Missionfinished", 2);
+          this.$emit("Missionfinished", 1);
           bus.$emit("sendMissioninfo", this.taskdata);
         } else {
           console.log("error submit!!");

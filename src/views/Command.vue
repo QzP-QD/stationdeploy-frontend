@@ -12,7 +12,7 @@
         <el-tab-pane label="地图信息" name="map">
           <div
             style="
-                  width:1000px;
+                  width:900px;
                   height:625px;
                   border: 2px solid rgb(6, 103, 248);"
           >
@@ -23,7 +23,7 @@
           <div
             id="topology"
             style="
-                  width:1000px;
+                  width:900px;
                   height:625px;
                   border: 2px solid rgb(6, 103, 248);"
           ></div>
@@ -42,13 +42,16 @@
               :style="{ width: '100%', height: '300px' }"
             ></div>
             <div
-              id="uploadSpeed"
+              id="speed"
               :style="{ width: '100%', height: '300px' }"
-            ></div>
-            <div
+            ><Speed></Speed>
+            </div>
+
+            <!-- <div
               id="downloadSpeed"
               :style="{ width: '100%', height: '300px' }"
-            ></div>
+            >
+            </div> -->
             <div
               id="networkDelay"
               :style="{ width: '100%', height: '300px' }"
@@ -194,11 +197,13 @@
 <script>
 import { option } from "../../static/mock/option.js";
 import DeployMap from "../components/deployViews/DeployMap";
-
+import Speed from "../components/charts/Speed.vue"
 export default {
   name: "Command",
   components: {
-    DeployMap
+    DeployMap,
+    Speed
+
   },
   data() {
     return {
@@ -271,54 +276,54 @@ export default {
         ]
       });
 
-      var uploadSpeed = this.$echarts.init(
-        document.getElementById("uploadSpeed")
-      );
-      uploadSpeed.setOption({
-        title: {
-          text: "设备上行速率"
-        },
-        tooltip: {},
-        xAxis: {
-          data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
-        },
-        yAxis: {},
-        series: [
-          {
-            name: "速率",
-            type: "line",
-            data: [5, 20, 36, 10, 10, 20]
-          }
-        ]
-      });
+      // var uploadSpeed = this.$echarts.init(
+      //   document.getElementById("uploadSpeed")
+      // );
+      // uploadSpeed.setOption({
+      //   title: {
+      //     text: "设备上行速率"
+      //   },
+      //   tooltip: {},
+      //   xAxis: {
+      //     data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
+      //   },
+      //   yAxis: {},
+      //   series: [
+      //     {
+      //       name: "速率",
+      //       type: "line",
+      //       data: [5, 20, 36, 10, 10, 20]
+      //     }
+      //   ]
+      // });
 
-      var downloadSpeed = this.$echarts.init(
-        document.getElementById("downloadSpeed")
-      );
-      downloadSpeed.setOption({
-        title: {
-          text: "设备下行速率"
-        },
-        tooltip: {},
-        xAxis: {
-          data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
-        },
-        yAxis: {},
-        series: [
-          {
-            name: "速率",
-            type: "line",
-            data: [5, 20, 36, 10, 10, 20]
-          }
-        ]
-      });
+      // var downloadSpeed = this.$echarts.init(
+      //   document.getElementById("downloadSpeed")
+      // );
+      // downloadSpeed.setOption({
+      //   title: {
+      //     text: "设备下行速率"
+      //   },
+      //   tooltip: {},
+      //   xAxis: {
+      //     data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
+      //   },
+      //   yAxis: {},
+      //   series: [
+      //     {
+      //       name: "速率",
+      //       type: "line",
+      //       data: [5, 20, 36, 10, 10, 20]
+      //     }
+      //   ]
+      // });
 
       var networkDelay = this.$echarts.init(
         document.getElementById("networkDelay")
       );
       networkDelay.setOption({
         title: {
-          text: "设备网络时延"
+          text: "网络时延"
         },
         tooltip: {},
         xAxis: {
@@ -430,6 +435,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style>

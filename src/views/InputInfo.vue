@@ -17,11 +17,11 @@
         />
       </el-steps>
       <!-- 位置导入 -->
-      <div v-show="activeIndex === 0">
+      <div v-show="activeIndex === 1">
         <position-block @Positionfinished="SetSection"></position-block>
       </div>
       <!-- 事件/任务导入 -->
-      <div v-show="activeIndex === 1">
+      <div v-show="activeIndex === 0">
         <missioin-block @Missionfinished="SetSection"></missioin-block>
       </div>
 
@@ -57,8 +57,8 @@ export default {
       //已完成步骤 编号列表
       stepSuc: [0],
       titlelist: [
-        "位置导入",
         "事件/任务导入",
+        "位置导入",
         "天气导入",
         "设备导入",
         "信息提交"

@@ -7,7 +7,8 @@ import Input from "../views/InputInfo"
 import Command from "../views/Command"
 import InfoManage from "../views/InfoManage"
 import SuggestDeploy from '../views/SuggestDeploy'
-
+import Speed from '../components/charts/Speed.vue'
+import downloadSpeed from '../components/charts/downloadSpeed.vue'
 //使用
 Vue.use(VueRouter);
 //导出
@@ -36,5 +37,16 @@ export default new VueRouter({
             path:'/infomanage',
             component:InfoManage
         },
+        {
+            //图表
+            path:'/Speed',
+            component:Speed
+        },
+        {
+            //图表
+            path:'/downloadSpeed',
+            component:downloadSpeed
+        },
+
     ]
 })
