@@ -37,14 +37,16 @@
                   height:625px;
                   overflow-y:auto;"
           >
-            <div
-              id="trafficCapacity"
-              :style="{ width: '100%', height: '300px' }"
-            ></div>
+
             <div
               id="speed"
               :style="{ width: '100%', height: '300px' }"
             ><Speed></Speed>
+            </div>
+            <div
+              id="trafficCapacity"
+              :style="{ width: '100%', height: '300px' }"
+            ><traffic-capacity></traffic-capacity>
             </div>
 
             <!-- <div
@@ -198,11 +200,14 @@
 import { option } from "../../static/mock/option.js";
 import DeployMap from "../components/deployViews/DeployMap";
 import Speed from "../components/charts/Speed.vue"
+import trafficCapacity from "../components/charts/trafficCapacity.vue"
 export default {
   name: "Command",
   components: {
     DeployMap,
-    Speed
+    Speed,
+    trafficCapacity
+    
 
   },
   data() {
@@ -255,26 +260,26 @@ export default {
     },
 
     drawLine() {
-      var trafficCapacity = this.$echarts.init(
-        document.getElementById("trafficCapacity")
-      );
-      trafficCapacity.setOption({
-        title: {
-          text: "设备实时通信量"
-        },
-        tooltip: {},
-        xAxis: {
-          data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
-        },
-        yAxis: {},
-        series: [
-          {
-            name: "通信量",
-            type: "bar",
-            data: [5, 20, 36, 10, 10, 20]
-          }
-        ]
-      });
+      // var trafficCapacity = this.$echarts.init(
+      //   document.getElementById("trafficCapacity")
+      // );
+      // trafficCapacity.setOption({
+      //   title: {
+      //     text: "设备实时通信量"
+      //   },
+      //   tooltip: {},
+      //   xAxis: {
+      //     data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"]
+      //   },
+      //   yAxis: {},
+      //   series: [
+      //     {
+      //       name: "通信量",
+      //       type: "bar",
+      //       data: [5, 20, 36, 10, 10, 20]
+      //     }
+      //   ]
+      // });
 
       // var uploadSpeed = this.$echarts.init(
       //   document.getElementById("uploadSpeed")

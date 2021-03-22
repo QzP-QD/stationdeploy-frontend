@@ -1,28 +1,26 @@
 <template>
-  <div><span>上行速率</span>
-    <div id="speed">
+  <div id="trafficCapacity">
 
-    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Speed",
+    name: "trafficCapacity",
 
     mounted() {
       this.drawLine();
     },
     methods: {
       drawLine() {
-        //var chartDom = document.getElementById('uploadSpeed');
-        var myChart = this.$echarts.init(document.getElementById("speed"));
+
+        var myChart = this.$echarts.init(document.getElementById("trafficCapacity"));
         //myChart.showLoading();
         var option;
 
         function randomData() {
 
-          now = new Date(+now + 1000);
+          now = new Date(+now + 4000);
 
           value = value + Math.random() * 200 - 100;
           var value2 = value1 + Math.random() * 200 - 100;
@@ -48,19 +46,20 @@
 
               ]
 
-            }, {
-
-              name: now.toString(),
-
-              value: [
-
-                now,
-
-                Math.round(value2)
-
-              ]
-
             },
+            // {
+
+            //   name: now.toString(),
+
+            //   value: [
+
+            //     now,
+
+            //     Math.round(value2)
+
+            //   ]
+
+            // },
 
 
           ]
@@ -81,12 +80,12 @@
 
           title: {
 
-            text: '网络速率'
+            text: '网络实时通信量'
 
           },
-          legend: {
-                  data: ['上行速率', '下行速率']
-              },
+          // legend: {
+          //         data: ['上行速率', '下行速率']
+          //     },
               color: ['#41D6C3', '#5AAAFA'],
 
 
@@ -99,30 +98,7 @@
                       backgroundColor: '#6a7985'
                     }
                   },
-                  //backgroundColor: '#fff',
-            // axisPointer: {
-            //            type: 'cross',
-            //            label: {
-            //                backgroundColor: '#6a7985'
-            //            }
-            //        },
 
-            // formatter: function(params) {
-
-            //   //params = params[0];
-
-            //   var date = new Date(params[0].name);
-            //   var result=params[0].seriesName +' : ' + params[0].value[1]+'kb/s';
-
-            //   return result;
-
-            // },
-
-            // axisPointer: {
-
-            //   animation: false
-
-            // }
 
           },
 
@@ -148,7 +124,7 @@
           }],
 
 
-     
+
           yAxis: [{
             splitLine: {
               show: true,
@@ -168,15 +144,14 @@
               show: false
             },
             type: 'value',
-            name: 'kb/s',
+            name: 'Mbps',
           }],
 
 
 
-          series: [{
+          series: {
 
-              name: '下行速率',
-
+              name: '通信量',
               type: 'line',
               lineStyle: {
                 normal: {
@@ -216,10 +191,6 @@
                         ]
                       },
 
-
-
-
-
               showSymbol: false,
               connectNulls: true,
 
@@ -228,78 +199,9 @@
               data: data
 
             },
-            {
-
-              name: '上行速率',
-
-              type: 'line',
-              lineStyle: {
-                normal: {
-                  color: '#41D6C3',
-                  width: 1
-                }
-              },
-              areaStyle: {
-                normal: {
-                  color: '#41D6C3',
-                  opacity: 0.5
-                }
-              },
-             markPoint: {
-                     label: {
-                       normal: {
-                         show: true,
-                         backgroundColor: '#fff',
-                         position: 'top',
-                         color: '#5AAAFA',
-                         borderColor: 'rgba(90,170,250,0.3)',
-                         borderWidth: 1,
-                         padding: 8,
-                         //formatter: `{b}: {c} ${unit}`
-                       }
-                     },
-                     symbol: 'circle',
-                     itemStyle: {
-                       normal: {
-                         borderColor: 'rgba(90,170,250,0.3)',
-                         borderWidth: 15
-                       }
-                     },
-                     symbolSize: 7,
-                     data: [
-                       { type: 'max', name: 'Max' }
-                     ]
-                   },
-
-              showSymbol: false,
-              connectNulls: true,
-
-              // hoverAnimation: false,
-
-              data: data2
-
-            },
-            // {
-
-            //   name: '设备3',
-
-            //   type: 'line',
-            //   lineStyle:{
-            //     normal:{
-            //       width:1
-            //     }
-            //   },
+         
 
 
-            //   showSymbol: false,
-
-            //   // hoverAnimation: false,
-
-            //   data: data3
-
-            // },
-
-          ]
 
         };
 
@@ -319,17 +221,13 @@
                 data: data
 
               },
-              {
 
-                data: data2
-
-              },
 
             ]
 
           });
 
-        }, 1000);
+        }, 4000);
 
         myChart.setOption(option);
 
@@ -339,8 +237,8 @@
   }
 </script>
 
-<style scoped>
-  #uploadSpeed {
+<style>
+  #trafficCapacity {
     width: 60%;
     height: 500px;
     /* background-color: #99A9BF; */
