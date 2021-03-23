@@ -1,12 +1,12 @@
 {
       "data":[
-        {"name": "设备1","category": 0,"draggable": true},
-        {"name": "设备2","category": 0,"draggable": true},
-        {"name": "设备3","category": 0,"draggable": true},
-        {"name": "设备4","category": 0,"draggable": true},
-        {"name": "设备5","category": 0,"draggable": true},
-        {"name": "设备6","category": 0,"draggable": true},
-         {"name": "设备7","category": 0,"draggable": true}],
+        {"name": "设备1","category": 0,"draggable": true,"upSpeed":"12kb/s","downSpeed":"800kb/s"},
+        {"name": "设备2","category": 0,"draggable": true,"upSpeed":"11kb/s","downSpeed":"1110kb/s"},
+        {"name": "设备3","category": 0,"draggable": true,"upSpeed":"12kb/s","downSpeed":"900kb/s"},
+        {"name": "设备4","category": 0,"draggable": true,"upSpeed":"10kb/s","downSpeed":"600kb/s"},
+        {"name": "设备5","category": 0,"draggable": true,"upSpeed":"9kb/s","downSpeed":"550kb/s"},
+        {"name": "设备6","category": 0,"draggable": true,"upSpeed":"5kb/s","downSpeed":"450kb/s"},
+         {"name": "设备7","category": 0,"draggable": true,"upSpeed":"15kb/s","downSpeed":"1230kb/s"}],
       "links":[
         {"source": 0,"target": 1,"category": 1},
          {"source": 0,"target": 2,"category": 1},
@@ -19,7 +19,7 @@
          {"source": 5,"target": 6,"category": 1}
                    ]
 
-    
-  
+
+
 
 }
