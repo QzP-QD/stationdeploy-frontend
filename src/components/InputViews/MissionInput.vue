@@ -1,9 +1,9 @@
 <template>
-  <div style="margin-top: 40px; width: 100%; border: 1px solid lightgray;">
-    <el-row>
+  <div style="margin-top: 40px; width: 100%; border: 1px solid lightgray;padding-bottom: 20px;">
+    <el-row style="border-bottom: #D2D2D2 1px solid">
       <el-col
         :span="4"
-        style="height:45px; line-height:45px; float: left; font-weight: 700; font-size: 15px;"
+        style="height:45px; line-height:45px; float: left; font-weight: 700; font-size: 15px;margin-left:20px"
         >事件/地点/任务</el-col
       >
       <el-col :span="16"></el-col>
@@ -222,4 +222,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

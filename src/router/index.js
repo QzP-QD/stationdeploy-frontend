@@ -9,6 +9,7 @@ import InfoManage from "../views/InfoManage"
 import SuggestDeploy from '../views/SuggestDeploy'
 import Speed from '../components/charts/Speed.vue'
 import downloadSpeed from '../components/charts/downloadSpeed.vue'
+
 //使用
 Vue.use(VueRouter);
 //导出
@@ -47,6 +48,7 @@ export default new VueRouter({
             path:'/downloadSpeed',
             component:downloadSpeed
         },
+
 
     ]
 })

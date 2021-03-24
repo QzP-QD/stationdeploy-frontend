@@ -123,7 +123,8 @@
       <el-button style="
                     height:50px;
                     width:140px;
-                    float:right;"
+                    float:right;
+                    margin-top: 20px;"
         type="primary" @click="NextStep()">
         下一步
       </el-button>

@@ -196,7 +196,7 @@
             style="width: 30%;"
             @keyup.native="proving"
             >{{ locform.rad }}</el-input
-          ><span>米</span><br />
+          ><span>米</span><br/>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
             <el-button type="primary" @click="editSubmit('locform')"

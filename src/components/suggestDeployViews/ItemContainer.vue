@@ -53,11 +53,11 @@
                 >部署完毕</el-button
               >
             </div>
-            <center><div style="width: 80%; height: 80px;">
+        <!--    <center><div style="width: 80%; height: 80px;">
               <el-button style="align:center;width:100%" type="primary" @click="infoPreview"
                 >信息预览</el-button
               >
-            </div></center>
+            </div></center> -->
           </div>
         </div>
       </el-collapse-item>
