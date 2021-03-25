@@ -10,7 +10,8 @@
       <li class="bmap-btn bmap-circle" id="circle" @click="draw($event)"></li>
     </ul>
 
-    <el-row :gutter="20">
+    <el-row :gutter="20" style=" margin-bottom: 20px;
+    ">
       <el-col :span="18">
         <div id="container"></div>
       </el-col>
@@ -21,22 +22,17 @@
             <li v-for="(item, index) in local_list" :key="index" class="housingList" @click="center(index)">
               <!-- <span>地点{{ index+1 }}：</span><br> -->
               <div class="loc-num">
-                <span class="pos-tag num">地点：</span><span class="pos-content num" >{{ item.loc_id }}</span></div>
+                <span class="pos-tag num">地点：</span><span class="pos-content num">{{ item.loc_id }}</span></div>
               <!-- <span>id：{{ item.id }}</span><br> -->
               <div id="loc-content">
-              <span class="pos-tag">位置：</span><span class="pos-content">{{ item.add }}</span><br>
-              <span class="pos-tag">经度：</span><span class="pos-content">{{ item.loclng }}</span><br>
-              <span class="pos-tag">纬度：</span><span class="pos-content">{{ item.loclat }}</span><br>
-              <span class="pos-tag">半径：</span>
-              <el-input v-model="item.rad" class="radius-input" v-on:input="changeCircle(index)">{{ item.rad }}</el-input><span>米</span><br>
-              <!-- <span>{{ item.rad }}</span> -->
-               <div class="block" style="height: 80px;">
-                  <el-slider
-                    v-model="item.rad"
-                    v-on:input="changeCircle(index)"
-                    show-input
-                    :min="0" :max="10000"
-                    >
+                <span class="pos-tag">位置：</span><span class="pos-content">{{ item.add }}</span><br>
+                <span class="pos-tag">经度：</span><span class="pos-content">{{ item.loclng }}</span><br>
+                <span class="pos-tag">纬度：</span><span class="pos-content">{{ item.loclat }}</span><br>
+                <span class="pos-tag">半径：</span>
+                <el-input v-model="item.rad" class="radius-input" v-on:input="changeCircle(index)">{{ item.rad }}</el-input><span>米</span><br>
+                <!-- <span>{{ item.rad }}</span> -->
+                <div class="block" style="height: 80px;">
+                  <el-slider v-model="item.rad" v-on:input="changeCircle(index)" show-input :min="0" :max="10000">
                   </el-slider>
                   <el-button v-if="index >= 0" class="delete_button" @click="delete_housing(index)">删除</el-button>
                 </div>
@@ -67,7 +63,7 @@
 <script>
   import bus from "./eventbus";
   export default {
-     name:"PositionInput",
+    name: "PositionInput",
     data() {
       return {
         map: "", // 地图对象
@@ -87,7 +83,7 @@
         flag: "", //0点  1圆
         id: 1, //用于自增做marker的id
         //loc_id: 1, //用于自增做地点的id
-        radius: '' ,//半径
+        radius: '', //半径
         pointaddress: '',
         value: 0
       };
@@ -105,10 +101,10 @@
         }); // 创建Map实例,GL版命名空间为BMapGL(鼠标右键控制倾斜角度)
         this.map.centerAndZoom(new window.BMapGL.Point(116.404, 39.915), 16); // 初始化地图,设置中心点坐标和地图级别
         this.map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
-         var scaleCtrl = new BMapGL.ScaleControl(); // 添加比例尺控件
-                this.map.addControl(scaleCtrl);
-                var zoomCtrl = new BMapGL.ZoomControl(); // 添加比例尺控件
-                this.map.addControl(zoomCtrl);
+        var scaleCtrl = new BMapGL.ScaleControl(); // 添加比例尺控件
+        this.map.addControl(scaleCtrl);
+        var zoomCtrl = new BMapGL.ZoomControl(); // 添加比例尺控件
+        this.map.addControl(zoomCtrl);
         var geolocation = new BMapGL.Geolocation();
 
         geolocation.getCurrentPosition(
@@ -124,7 +120,7 @@
               //?
               markers.id = th.id;
               th.id = th.id + 1;
-              markers.type = 0;//0标注 1圆 2标签
+              markers.type = 0; //0标注 1圆 2标签
               let circle = new BMapGL.Circle(r.point,
                 0.1, {
                   strokeColor: "#5E87DB", // 边线颜色
@@ -135,9 +131,9 @@
                 });
               this.map.addOverlay(circle);
               circle.id = this.id;
-              circle.type=1;
+              circle.type = 1;
               this.id++;
-              let len=this.local_list.length+1;
+              let len = this.local_list.length + 1;
               let name = '地点' + len;
               // 指定文本标注所在的地理位置
               let opts = {
@@ -159,7 +155,7 @@
               });
               this.map.addOverlay(label); //添加文本标注
               label.id = this.id;
-              label.type=2;
+              label.type = 2;
               this.id++;
 
 
@@ -225,9 +221,9 @@
               });
             th.map.addOverlay(circle);
             circle.id = th.id;
-            circle.type=1;
+            circle.type = 1;
             th.id++;
-            let len=th.local_list.length+1;
+            let len = th.local_list.length + 1;
             let name = '地点' + len;
             // 指定文本标注所在的地理位置
             let opts = {
@@ -249,7 +245,7 @@
             });
             th.map.addOverlay(label); //添加文本标注
             label.id = th.id;
-            label.type=2;
+            label.type = 2;
             th.id++;
 
 
@@ -384,6 +380,7 @@
         // console.log(event);
         //console.log(overlay.latLng.lat);
         const that = this;
+
         function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
           this.loc_id = loc_id;
@@ -393,8 +390,8 @@
           this.rad = rad;
         }
         overlay.id = this.id;
-        let len=this.local_list.length+1;
-        console.log("列表长度："+this.local_list.length);
+        let len = this.local_list.length + 1;
+        console.log("列表长度：" + this.local_list.length);
         let name = '地点' + len;
         overlay.type = 0;
         // console.log("marker");
@@ -402,13 +399,13 @@
 
         var myGeo = new BMapGL.Geocoder();
         // 根据坐标得到地址描述
-         myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),  function(result){
-         if (result){
-            that.pointaddress = result.address+"附近";
+        myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat), function(result) {
+          if (result) {
+            that.pointaddress = result.address + "附近";
             var objloc = new loc(overlay.id, len, that.pointaddress, overlay.latLng.lng, overlay.latLng.lat, 0);
             that.local_list.push(objloc);
-         }
-         });
+          }
+        });
 
         this.id++;
         this.loc_id++;
@@ -458,6 +455,7 @@
         // console.log(event);
         // console.log(overlay);
         const that = this;
+
         function loc(id, loc_id, add, loclng, loclat, rad) {
           this.id = id;
           this.loc_id = loc_id;
@@ -476,7 +474,7 @@
         this.map.addOverlay(maker_);
         maker_.id = this.id + 1;
         //console.log(maker_);
-        let len=this.local_list.length+1;
+        let len = this.local_list.length + 1;
         let name = '地点' + len;
         // 指定文本标注所在的地理位置
         let opts = {
@@ -500,14 +498,15 @@
         label.id = this.id + 2;
 
         var myGeo = new BMapGL.Geocoder();
-         // 根据坐标得到地址描述
-         myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat),  function(result){
-         if (result){
-          that.pointaddress = result.address+"附近";
-          var objloc = new loc(overlay.id, len, that.pointaddress, overlay.latLng.lng, overlay.latLng.lat, parseInt(overlay.radius));
-          that.local_list.push(objloc);
-         }
-         });
+        // 根据坐标得到地址描述
+        myGeo.getLocation(new BMapGL.Point(overlay.latLng.lng, overlay.latLng.lat), function(result) {
+          if (result) {
+            that.pointaddress = result.address + "附近";
+            var objloc = new loc(overlay.id, len, that.pointaddress, overlay.latLng.lng, overlay.latLng.lat,
+              parseInt(overlay.radius));
+            that.local_list.push(objloc);
+          }
+        });
 
         this.id = this.id + 3;
         this.loc_id++;
@@ -535,16 +534,16 @@
         }
 
         //改序号
-        let len=_this.local_list.length;
-        let local_list_1=_this.local_list;
-        for(let i=0;i<len;i++){
-          if(local_list_1[i].loc_id!=i+1){
-            local_list_1[i].loc_id=i+1;
-            for (let j = 0; j < allOverlay.length; j++){
-              if (allOverlay[j].id == local_list_1[i].id) {
-                let label=allOverlay[j+2];
+        let len = _this.local_list.length;
+        let local_list_1 = _this.local_list;
+        for (let i = 0; i < len; i++) {
+          if (local_list_1[i].loc_id != i + 1) { //改变所有不是按顺序的地点序号
+            local_list_1[i].loc_id = i + 1;
+            for (let j = 0; j < allOverlay.length; j++) {
+              if (allOverlay[j].id == local_list_1[i].id) { //更改对应标注的内容
+                let label = allOverlay[j + 2];
                 console.log(label.content);
-                let name="地点"+local_list_1[i].loc_id;
+                let name = "地点" + local_list_1[i].loc_id;
                 label.setContent(name);
               }
             }
@@ -605,7 +604,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   #container {
     width: 100%;
     height: 650px;
@@ -705,10 +704,10 @@
     margin-top: 10px;
   }
 
-  .el-row {
+  /* .el-row {
     margin-bottom: 20px;
     margin-left: 100px;
-  }
+  } */
 
   .el-col {
     border-radius: 4px;
@@ -734,7 +733,7 @@
   }
 
   .pos-content {
-    color:#666666;
+    color: #666666;
     font-size: 14px;
   }
 
@@ -747,26 +746,27 @@
     border-bottom: 0px;
 
   }
-  #loc-content{
+
+  #loc-content {
     border: #D7D7D7 1.2px solid;
-    width:250px;
-    height:auto;
+    width: 250px;
+    height: auto;
     /* height:180px; */
     margin-bottom: 10px;
     padding-bottom: 10px;
-    padding-top:10px;
-    padding-left:10px;
+    padding-top: 10px;
+    padding-left: 10px;
   }
-  .delete_button{
-    float:right;
+
+  .delete_button {
+    float: right;
     margin-right: 10px;
     margin-top: 5px;
 
   }
-  .num{
+
+  .num {
     font-size: 20px;
-    color:#0079FE;
+    color: #0079FE;
   }
-
-
 </style>
